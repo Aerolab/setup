@@ -12,6 +12,7 @@ all_roles = ['developer', 'designer', 'other']
 name = ''
 email = ''
 role = ''
+options = { 'xcode': '', 'zsh': '', 'animations': '', 'showhiddenfiles': '' }
 
 while name == '':
   name = raw_input("What's your name?\n").strip()
@@ -21,6 +22,18 @@ while email == '' or '@' not in email:
 
 while role not in all_roles:
   role = raw_input("What do you do at Aerolab? (%s)\n" % '|'.join(all_roles))
+
+while options.xcode not in ['y', 'n']:
+  options.xcode = raw_input("Do you want to install XCode Tools? (%s)\n" % '|'.join(['y','n']))
+
+while options.zsh not in ['y', 'n']:
+  options.zsh = raw_input("Do you want to install Oh My Zsh? (%s)\n" % '|'.join(['y','n']))
+
+while options.animations not in ['y', 'n']:
+  options.animations = raw_input("Do you want to accelerate OSX animations? (%s)\n" % '|'.join(['y','n']))
+
+while options.showhiddenfiles not in ['y', 'n']:
+  options.showhiddenfiles = raw_input("Do you want to show hidden files? (%s)\n" % '|'.join(['y','n']))
 
 
 print "Hi %s!" % name
@@ -37,11 +50,16 @@ else:
   os.system('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "%s"' % email)
 
 
-print "Installing XCode Tools"
-# XCode Essentials from https://github.com/donnemartin/dev-setup
-os.system('git clone https://github.com/donnemartin/dev-setup.git')
-os.system('./dev-setup/.dots bootstrap osxprep')
-os.system('rm -rf ./dev-setup')
+if options.xcode == 'y':
+  print "Installing XCode Tools"
+  # XCode Essentials from https://github.com/donnemartin/dev-setup
+  os.system('git clone https://github.com/donnemartin/dev-setup.git')
+  os.system('./dev-setup/.dots bootstrap osxprep')
+  os.system('rm -rf ./dev-setup')
+  print "*************************************"
+  print "Restart your Mac to continue"
+  print "*************************************"
+  exit()
 
 print "Installing Brew & Brew Cask"
 os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
@@ -51,22 +69,25 @@ os.system('brew tap caskroom/versions')
 os.system('brew tap caskroom/fonts')
 os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 
-print "Installing JS+Python+Ruby"
-os.system('brew install git node python python3 ruby go')
+print "Installing Git+JS+Python+Ruby"
+os.system('brew install git node python python3 ruby')
 os.system('brew link --overwrite git node python python3 ruby')
+os.system('brew install git-flow')
 
 print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl letsencrypt')
 
-print "Installing Package Managers"
+print "Installing Command Line Tools"
 os.system('npm install -g yo bower gulp grunt grunt-cli node-gyp')
-os.system('npm install -g pageres pageres-cli')
+os.system('npm install -g pageres-cli')
+os.system('npm install -g postcss-cli')
+os.system('gem install sass')
 
 print "Installing Quicklook Helpers"
 os.system('brew cask install qlcolorcode qlmarkdown qlimagesize quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch betterzipql font-hack')
 
 print "Installing Fonts"
-os.system('brew cask install font-dosis font-droid-sans font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-condensed font-roboto-slab font-arial font-arial-black font-consolas-for-powerline font-dejavu-sans font-dejavu-sans-mono-for-powerline font-georgia font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-lg-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-verdana font-times-new-roman font-ubuntu font-pt-mono font-pt-sans font-pt-serif')
+os.system('brew cask install font-dosis font-droid-sans font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-condensed font-roboto-slab font-arial font-arial-black font-consolas-for-powerline font-dejavu-sans font-dejavu-sans-mono-for-powerline font-georgia font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-lg-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-verdana font-times-new-roman font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-fontawesome font-source-code-pro font-anka-coder')
 
 print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
@@ -74,8 +95,9 @@ os.system('brew cask install google-chrome firefox sourcetree sublime-text3 atom
 
 if role in ['developer']:
   print "Installing Developer Tools"
-  os.system('brew cask install dockertoolbox')
+  os.system('brew cask install sequel-pro cyberduck dockertoolbox')
   #os.system('brew install android-platform-tools')
+  #os.system('brew cask install java')
   #os.system('brew cask install android-studio')
 
 if role in ['designer']:
@@ -89,18 +111,25 @@ if not os.path.isfile(os.path.expanduser("~") + '/Library/Application Support/Su
   os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
 
 
-print "Installing Oh-My-Zsh with Dracula Theme"
-os.system('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
-os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc &> /dev/null')
-os.system('chsh -s /bin/zsh &> /dev/null')
-os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
+if options.zsh == 'y':
+  print "Installing Oh-My-Zsh with Dracula Theme"
+  os.system('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
+  os.system('brew install zsh-syntax-highlighting zsh-autosuggestions')
 
-os.system('git clone https://github.com/zenorocha/dracula-theme/ ~/Desktop/dracula-theme/')
+  if not os.path.isfile(os.path.expanduser("~") + '/.zshrc'):
+    os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc &> /dev/null')
+    #os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
+    os.system('echo "source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc')
+    os.system('echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc')
+
+  os.system('chsh -s /bin/zsh &> /dev/null')
+
+  os.system('git clone https://github.com/zenorocha/dracula-theme/ ~/Desktop/dracula-theme/')
 
 
 print "Tweaking Finder Settings"
 
-if role in ['developer']:
+if options.showhiddenfiles:
   # Finder: show hidden files by default
   os.system('defaults write com.apple.finder AppleShowAllFiles -bool true')
   # Finder: show all filename extensions
@@ -125,7 +154,7 @@ os.system('defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -boo
 os.system('sudo nvram SystemAudioVolume=", "')
 
 
-if role in ['developer']:
+if options.animations == 'y':
   print "Tweaking System Animations"
   os.system('defaults write NSGlobalDomain NSWindowResizeTime -float 0.1')
   os.system('defaults write com.apple.dock expose-animation-duration -float 0.15')
@@ -141,23 +170,22 @@ os.system('sudo defaults write /Library/Preferences/SystemConfiguration/com.appl
 # Make Google Chrome the default browser
 os.system('open -a "Google Chrome" --args --make-default-browser')
 
+os.system('brew cleanup && brew cask cleanup')
+
 
 print ""
 print ""
 print "*************************************"
 print "Enabling FileVault"
 os.system('sudo fdesetup enable')
+print ""
 
-print ""
-print ""
 print "*************************************"
-print "Your Public Key Is:"
-
+print "Your SSH Public Key Is:"
 with open(os.path.expanduser("~") + '/.ssh/id_rsa.pub', 'r') as f:
   print f.read()
+print ""
 
-print ""
-print ""
 print "*************************************"
 print "Remember to set up iTerm2:"
 print "* Go to iTerm2 > Preferences > Profiles > Colors Tab"
@@ -167,6 +195,7 @@ print "  * Pick Desktop > dracula-theme > iterm > Dracula.itermcolors"
 print "* Go to iTerm2 > Preferences > Profiles > Text Tab"
 print "  * Regular Font"
 print "  * 12pt Menlo for Powerline Font"
+
 print ""
 print "*************************************"
 print "Remember to restart your Mac"
