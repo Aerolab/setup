@@ -7,12 +7,11 @@ import urllib2
 
 print "Welcome... TO THE WORLD OF TOMORROW"
 
-all_roles = ['developer', 'designer', 'other']
-
 name = ''
 email = ''
 role = ''
-options = { 'xcode': '', 'zsh': '', 'animations': '', 'showhiddenfiles': '' }
+options = { 'designer': '', 'developer': '', 'android': '',
+            'zsh': '', 'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
 
 while name == '':
   name = raw_input("What's your name?\n").strip()
@@ -20,11 +19,15 @@ while name == '':
 while email == '' or '@' not in email:
   email = raw_input("What's your email at Aerolab?\n").strip()
 
-while role not in all_roles:
-  role = raw_input("What do you do at Aerolab? (%s)\n" % '|'.join(all_roles))
+while options.developer not in ['y', 'n']:
+  options.developer = raw_input("Do you want to install Developer Tools? (%s)\n" % '|'.join(['y','n']))
 
-while options.xcode not in ['y', 'n']:
-  options.xcode = raw_input("Do you want to install XCode Tools? (%s)\n" % '|'.join(['y','n']))
+if options.developer == 'y':
+  while options.android not in ['y', 'n']:
+    options.android = raw_input("Do you want to install Android Tools? (%s)\n" % '|'.join(['y','n']))
+
+while options.designer not in ['y', 'n']:
+  options.designer = raw_input("Do you want to install Designer Tools? (%s)\n" % '|'.join(['y','n']))
 
 while options.zsh not in ['y', 'n']:
   options.zsh = raw_input("Do you want to install Oh My Zsh? (%s)\n" % '|'.join(['y','n']))
@@ -35,6 +38,9 @@ while options.animations not in ['y', 'n']:
 while options.showhiddenfiles not in ['y', 'n']:
   options.showhiddenfiles = raw_input("Do you want to show hidden files? (%s)\n" % '|'.join(['y','n']))
 
+while options.autoupdate not in ['y', 'n']:
+  options.autoupdate = raw_input("Do you want to update your computer automatically? (Recommended) (%s)\n" % '|'.join(['y','n']))
+
 
 print "Hi %s!" % name
 print "You'll be asked for your password at a few points in the process"
@@ -43,6 +49,7 @@ print "Setting up your Mac..."
 print "*************************************"
 
 
+# Create a Private Key
 if os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub'):
   print "You already have a Private Key"
 else:
@@ -50,17 +57,24 @@ else:
   os.system('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "%s"' % email)
 
 
-if options.xcode == 'y':
+# Set computer name (as done via System Preferences → Sharing)
+os.system('sudo scutil --set ComputerName "%s"' % name)
+os.system('sudo scutil --set HostName "%s"' % name)
+os.system('sudo scutil --set LocalHostName "%s"' % name)
+os.system('sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "%s"' % name)
+
+
+# Check if Xcode Command Line Tools are installed
+if os.system('xcode-select -p') == 0:
   print "Installing XCode Tools"
-  # XCode Essentials from https://github.com/donnemartin/dev-setup
-  os.system('git clone https://github.com/donnemartin/dev-setup.git')
-  os.system('./dev-setup/.dots bootstrap osxprep')
-  os.system('rm -rf ./dev-setup')
+  os.system('xcode-select --install')
   print "*************************************"
   print "Restart your Mac to continue"
   print "*************************************"
   exit()
 
+
+# Install Brew & Brew Cask
 print "Installing Brew & Brew Cask"
 os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
 os.system('brew tap caskroom/cask')
@@ -69,20 +83,21 @@ os.system('brew tap caskroom/versions')
 os.system('brew tap caskroom/fonts')
 os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 
-print "Installing Git+JS+Python+Ruby"
+
+# Install Developer Tools
+print "Installing Git+NodeJS+Python+Ruby"
 os.system('brew install git node python python3 ruby')
 os.system('brew link --overwrite git node python python3 ruby')
 os.system('brew install git-flow')
 
 print "Installing Useful Stuff"
-os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl letsencrypt')
+os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
 
 print "Installing Command Line Tools"
 os.system('npm install -g yo bower gulp grunt grunt-cli node-gyp')
-os.system('npm install -g pageres-cli')
-os.system('npm install -g postcss-cli')
-os.system('gem install sass')
 
+
+# OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
 os.system('brew cask install qlcolorcode qlmarkdown qlimagesize quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch betterzipql font-hack')
 
@@ -93,47 +108,62 @@ print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
 os.system('brew cask install google-chrome firefox sourcetree sublime-text3 atom dropbox skype spotify slack google-hangouts vlc macdown')
 
-if role in ['developer']:
-  print "Installing Developer Tools"
-  os.system('brew cask install sequel-pro cyberduck dockertoolbox')
-  #os.system('brew install android-platform-tools')
-  #os.system('brew cask install java')
-  #os.system('brew cask install android-studio')
-
-if role in ['designer']:
-  print "Installing Designer Tools"
-  os.system('brew cask install invisionsync iconjar skala-preview')
-  #os.system('brew cask install sketch-tool principle framer-studio origami')
-
-
 if not os.path.isfile(os.path.expanduser("~") + '/Library/Application Support/Sublime Text 3/Installed Packages/Package Control.sublime-package'):
   print "Adding Package Control to Sublime Text"
   os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
 
 
+# Appropriate Software
+if options.developer == 'y':
+  print "Installing Developer Tools"
+  os.system('brew cask install sequel-pro cyberduck dockertoolbox')
+
+if options.android == 'y':
+  print "Installing Android Tools"
+  os.system('brew cask install java')
+  os.system('brew cask install android-studio')
+  os.system('brew install android-platform-tools')
+
+if options.designer == 'y':
+  print "Installing Designer Tools"
+  os.system('brew cask install invisionsync iconjar skala-preview')
+  #os.system('brew cask install sketch-tool principle framer-studio origami')
+
+
+# Oh-My-ZSH. Dracula Theme for iTerm2 needs to be installed manually
 if options.zsh == 'y':
   print "Installing Oh-My-Zsh with Dracula Theme"
   os.system('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
   os.system('brew install zsh-syntax-highlighting zsh-autosuggestions')
+  os.system('pip install pygmentize')
 
   if not os.path.isfile(os.path.expanduser("~") + '/.zshrc'):
     os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc &> /dev/null')
-    #os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
+
+    # Agnoster Theme
+    os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
+    # Plugins
+    os.system('sed -i -e \'s/plugins=(git)/plugins=(git git-flow brew sublime python node bower npm gem pip pod docker zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages copydir copyfile extract)/g\' ~/.zshrc &> /dev/null')
+
+    # Customizations
     os.system('echo "source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc')
     os.system('echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc')
+    os.system('echo "alias dog=\'colorize\'" >> ~/.zshrc')
 
   os.system('chsh -s /bin/zsh &> /dev/null')
 
   os.system('git clone https://github.com/zenorocha/dracula-theme/ ~/Desktop/dracula-theme/')
 
 
-print "Tweaking Finder Settings"
+# Random OSX Settings
+print "Tweaking OSX Settings"
 
 if options.showhiddenfiles:
   # Finder: show hidden files by default
   os.system('defaults write com.apple.finder AppleShowAllFiles -bool true')
   # Finder: show all filename extensions
   os.system('defaults write NSGlobalDomain AppleShowAllExtensions -bool true')
+
 
 # Finder: allow text selection in Quick Look
 os.system('defaults write com.apple.finder QLEnableTextSelection -bool true')
@@ -161,15 +191,17 @@ if options.animations == 'y':
   os.system('defaults write com.apple.dock autohide-time-modifier -float 0.2')
   os.system('defaults write NSGlobalDomain com.apple.springing.delay -float 0.5')
 
-# Set computer name (as done via System Preferences → Sharing)
-os.system('sudo scutil --set ComputerName "%s"' % name)
-os.system('sudo scutil --set HostName "%s"' % name)
-os.system('sudo scutil --set LocalHostName "%s"' % name)
-os.system('sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "%s"' % name)
+
+if options.autoupdate == 'y':
+  print "Enabling Automatic Brew Updates & Upgrades"
+  os.system('brew tap domt4/autoupdate')
+  os.system('brew autoupdate --start --upgrade')
+
 
 # Make Google Chrome the default browser
 os.system('open -a "Google Chrome" --args --make-default-browser')
 
+# Clean Up
 os.system('brew cleanup && brew cask cleanup')
 
 
@@ -186,17 +218,18 @@ with open(os.path.expanduser("~") + '/.ssh/id_rsa.pub', 'r') as f:
   print f.read()
 print ""
 
-print "*************************************"
-print "Remember to set up iTerm2:"
-print "* Go to iTerm2 > Preferences > Profiles > Colors Tab"
-print "  * Load Presets..."
-print "  * Import..."
-print "  * Pick Desktop > dracula-theme > iterm > Dracula.itermcolors"
-print "* Go to iTerm2 > Preferences > Profiles > Text Tab"
-print "  * Regular Font"
-print "  * 12pt Menlo for Powerline Font"
+if options.zsh:
+  print "*************************************"
+  print "Remember to set up iTerm2:"
+  print "* Go to iTerm2 > Preferences > Profiles > Colors Tab"
+  print "  * Load Presets..."
+  print "  * Import..."
+  print "  * Pick Desktop > dracula-theme > iterm > Dracula.itermcolors"
+  print "* Go to iTerm2 > Preferences > Profiles > Text Tab"
+  print "  * Regular Font"
+  print "  * 12pt Menlo for Powerline Font"
+  print ""
 
-print ""
 print "*************************************"
 print "Remember to restart your Mac"
 print "*************************************"
