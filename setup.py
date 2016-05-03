@@ -81,6 +81,7 @@ os.system('brew tap caskroom/cask')
 os.system('brew tap homebrew/services')
 os.system('brew tap caskroom/versions')
 os.system('brew tap caskroom/fonts')
+os.system('brew tap homebrew/versions')
 os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 
 
