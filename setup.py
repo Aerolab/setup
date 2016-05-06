@@ -9,7 +9,7 @@ print "Welcome... TO THE WORLD OF TOMORROW"
 
 name = ''
 email = ''
-options = { 'developer': '', 'android': '', 'designer': '',
+options = { 'developer': '', 'android': '', 'ios': '', 'designer': '',
             'zsh': '', 'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
 
 
@@ -30,6 +30,9 @@ while options['developer'] not in ['y', 'n']:
 if options['developer'] == 'y':
   while options['android'] not in ['y', 'n']:
     options['android'] = raw_input("Do you want to install Android Tools? (%s)  " % '|'.join(['y','n']))
+
+  while options['ios'] not in ['y', 'n']:
+    options['ios'] = raw_input("Do you want to install iOS Tools? (%s)  " % '|'.join(['y','n']))
 
 while options['designer'] not in ['y', 'n']:
   options['designer'] = raw_input("Do you want to install Designer Tools? (%s)  " % '|'.join(['y','n']))
@@ -130,6 +133,10 @@ if options['android'] == 'y':
   os.system('brew cask install android-studio')
   os.system('brew install android-platform-tools')
 
+if options['ios'] == 'y':
+  print "Installing iOS Tools"
+  os.system('sudo gem install cocoapods')
+  
 if options['designer'] == 'y':
   print "Installing Designer Tools"
   os.system('brew cask install invisionsync iconjar skala-preview')
