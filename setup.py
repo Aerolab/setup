@@ -9,16 +9,18 @@ print "Welcome... TO THE WORLD OF TOMORROW"
 
 name = ''
 email = ''
-role = ''
 options = { 'designer': '', 'developer': '', 'android': '',
             'zsh': '', 'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
 
+# Basic Info
 while name == '':
   name = raw_input("What's your name?\n").strip()
 
 while email == '' or '@' not in email:
-  email = raw_input("What's your email at Aerolab?\n").strip()
+  email = raw_input("What's your email?\n").strip()
 
+
+# Setup Options
 while options.developer not in ['y', 'n']:
   options.developer = raw_input("Do you want to install Developer Tools? (%s)\n" % '|'.join(['y','n']))
 
@@ -95,7 +97,7 @@ print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
 
 print "Installing Command Line Tools"
-os.system('npm install -g yo bower gulp grunt grunt-cli node-gyp')
+os.system('npm install -g yo bower gulp grunt grunt-cli node-gyp nvm')
 
 
 # OSX Tweaks & Essentials
@@ -159,7 +161,7 @@ if options.zsh == 'y':
 # Random OSX Settings
 print "Tweaking OSX Settings"
 
-if options.showhiddenfiles:
+if options.showhiddenfiles == 'y':
   # Finder: show hidden files by default
   os.system('defaults write com.apple.finder AppleShowAllFiles -bool true')
   # Finder: show all filename extensions
@@ -201,6 +203,7 @@ if options.autoupdate == 'y':
 
 # Make Google Chrome the default browser
 os.system('open -a "Google Chrome" --args --make-default-browser')
+
 
 # Clean Up
 os.system('brew cleanup && brew cask cleanup')
