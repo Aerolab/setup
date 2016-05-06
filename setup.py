@@ -9,8 +9,11 @@ print "Welcome... TO THE WORLD OF TOMORROW"
 
 name = ''
 email = ''
-options = { 'designer': '', 'developer': '', 'android': '',
+options = { 'developer': '', 'android': '', 'designer': '',
             'zsh': '', 'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
+
+
+# Sudo: Spectacle, ZSH, OSX Settings
 
 # Basic Info
 while name == '':
@@ -21,27 +24,27 @@ while email == '' or '@' not in email:
 
 
 # Setup Options
-while options.developer not in ['y', 'n']:
-  options.developer = raw_input("Do you want to install Developer Tools? (%s)\n" % '|'.join(['y','n']))
+while options['developer'] not in ['y', 'n']:
+  options['developer'] = raw_input("Do you want to install Developer Tools? (%s)  " % '|'.join(['y','n']))
 
-if options.developer == 'y':
-  while options.android not in ['y', 'n']:
-    options.android = raw_input("Do you want to install Android Tools? (%s)\n" % '|'.join(['y','n']))
+if options['developer'] == 'y':
+  while options['android'] not in ['y', 'n']:
+    options['android'] = raw_input("Do you want to install Android Tools? (%s)  " % '|'.join(['y','n']))
 
-while options.designer not in ['y', 'n']:
-  options.designer = raw_input("Do you want to install Designer Tools? (%s)\n" % '|'.join(['y','n']))
+while options['designer'] not in ['y', 'n']:
+  options['designer'] = raw_input("Do you want to install Designer Tools? (%s)  " % '|'.join(['y','n']))
 
-while options.zsh not in ['y', 'n']:
-  options.zsh = raw_input("Do you want to install Oh My Zsh? (%s)\n" % '|'.join(['y','n']))
+while options['zsh'] not in ['y', 'n']:
+  options['zsh'] = raw_input("Do you want to install Oh My Zsh? (%s)  " % '|'.join(['y','n']))
 
-while options.animations not in ['y', 'n']:
-  options.animations = raw_input("Do you want to accelerate OSX animations? (%s)\n" % '|'.join(['y','n']))
+while options['animations'] not in ['y', 'n']:
+  options['animations'] = raw_input("Do you want to accelerate OSX animations? (%s)  " % '|'.join(['y','n']))
 
-while options.showhiddenfiles not in ['y', 'n']:
-  options.showhiddenfiles = raw_input("Do you want to show hidden files? (%s)\n" % '|'.join(['y','n']))
+while options['showhiddenfiles'] not in ['y', 'n']:
+  options['showhiddenfiles'] = raw_input("Do you want to show hidden files? (%s)  " % '|'.join(['y','n']))
 
-while options.autoupdate not in ['y', 'n']:
-  options.autoupdate = raw_input("Do you want to update your computer automatically? (Recommended) (%s)\n" % '|'.join(['y','n']))
+while options['autoupdate'] not in ['y', 'n']:
+  options['autoupdate'] = raw_input("Do you want to update your computer automatically? (Recommended) (%s)  " % '|'.join(['y','n']))
 
 
 print "Hi %s!" % name
@@ -67,7 +70,7 @@ os.system('sudo defaults write /Library/Preferences/SystemConfiguration/com.appl
 
 
 # Check if Xcode Command Line Tools are installed
-if os.system('xcode-select -p') == 0:
+if os.system('xcode-select -p') != 0:
   print "Installing XCode Tools"
   os.system('xcode-select --install')
   print "*************************************"
@@ -117,28 +120,28 @@ if not os.path.isfile(os.path.expanduser("~") + '/Library/Application Support/Su
 
 
 # Appropriate Software
-if options.developer == 'y':
+if options['developer'] == 'y':
   print "Installing Developer Tools"
   os.system('brew cask install sequel-pro cyberduck dockertoolbox')
 
-if options.android == 'y':
+if options['android'] == 'y':
   print "Installing Android Tools"
   os.system('brew cask install java')
   os.system('brew cask install android-studio')
   os.system('brew install android-platform-tools')
 
-if options.designer == 'y':
+if options['designer'] == 'y':
   print "Installing Designer Tools"
   os.system('brew cask install invisionsync iconjar skala-preview')
   #os.system('brew cask install sketch-tool principle framer-studio origami')
 
 
 # Oh-My-ZSH. Dracula Theme for iTerm2 needs to be installed manually
-if options.zsh == 'y':
+if options['zsh'] == 'y':
   print "Installing Oh-My-Zsh with Dracula Theme"
   os.system('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
   os.system('brew install zsh-syntax-highlighting zsh-autosuggestions')
-  os.system('pip install pygmentize')
+  os.system('pip install pygments')
 
   if not os.path.isfile(os.path.expanduser("~") + '/.zshrc'):
     os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc &> /dev/null')
@@ -161,7 +164,7 @@ if options.zsh == 'y':
 # Random OSX Settings
 print "Tweaking OSX Settings"
 
-if options.showhiddenfiles == 'y':
+if options['showhiddenfiles'] == 'y':
   # Finder: show hidden files by default
   os.system('defaults write com.apple.finder AppleShowAllFiles -bool true')
   # Finder: show all filename extensions
@@ -187,7 +190,7 @@ os.system('defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -boo
 os.system('sudo nvram SystemAudioVolume=", "')
 
 
-if options.animations == 'y':
+if options['animations'] == 'y':
   print "Tweaking System Animations"
   os.system('defaults write NSGlobalDomain NSWindowResizeTime -float 0.1')
   os.system('defaults write com.apple.dock expose-animation-duration -float 0.15')
@@ -195,7 +198,7 @@ if options.animations == 'y':
   os.system('defaults write NSGlobalDomain com.apple.springing.delay -float 0.5')
 
 
-if options.autoupdate == 'y':
+if options['autoupdate'] == 'y':
   print "Enabling Automatic Brew Updates & Upgrades"
   os.system('brew tap domt4/autoupdate')
   os.system('brew autoupdate --start --upgrade')
@@ -222,7 +225,7 @@ with open(os.path.expanduser("~") + '/.ssh/id_rsa.pub', 'r') as f:
   print f.read()
 print ""
 
-if options.zsh:
+if options['zsh']:
   print "*************************************"
   print "Remember to set up iTerm2:"
   print "* Go to iTerm2 > Preferences > Profiles > Colors Tab"
