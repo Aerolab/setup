@@ -11,7 +11,7 @@ This will install the most popular tools and tweaks we use at Aerolab, including
 
 ### Options
 
-* *Developer Tools*: Docker Toolbox, Sequel Pro, Cyberduck
+* *Developer Tools*: Docker Toolbox, Sequel Pro, Cyberduck, ngrok
 * *Android Tools*: Java, Android Studio
 * *iOS Tools*: Cocoapods
 * *Designer Tools*: Invision Sync, Scala Preview
