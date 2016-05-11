@@ -90,7 +90,7 @@ os.system('brew tap homebrew/versions')
 os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 
 
-# Install Developer Tools
+# Install Languages
 print "Installing Git+NodeJS+Python+Ruby"
 os.system('brew install git node python python3 ruby')
 os.system('brew link --overwrite git node python python3 ruby')
@@ -122,7 +122,7 @@ if not os.path.isfile(os.path.expanduser("~") + '/Library/Application Support/Su
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew cask install sequel-pro cyberduck dockertoolbox')
+  os.system('brew cask install sequel-pro cyberduck dockertoolbox ngrok')
 
 if options['android'] == 'y':
   print "Installing Android Tools"
