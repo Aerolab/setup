@@ -61,9 +61,7 @@ print "*************************************"
 
 
 # Create a Private Key
-if os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub'):
-  print "You already have a Private Key"
-else:
+if not os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub'):
   print "Creating your Private Key"
   os.system('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "%s"' % email)
 
@@ -142,6 +140,14 @@ if options['designer'] == 'y':
   #os.system('brew cask install sketch-tool principle framer-studio origami')
 
 
+# Sublime Text 3 Package Control & Binding
+if not os.path.isfile( settings_path + 'Installed Packages/Package Control.sublime-package'):
+  print "Installing Package Control"
+  os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
+
+os.system('ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime')
+
+
 # Sublime Text 3 with Recommended Packages
 if options['sublime'] == 'y':
   print "Customizing Sublime Text"
@@ -154,12 +160,6 @@ if options['sublime'] == 'y':
 
   if not os.path.exists(os.path.dirname(user_path)):
     os.makedirs(os.path.dirname(user_path))
-
-
-  # Install Package Control
-  if not os.path.isfile( settings_path + 'Installed Packages/Package Control.sublime-package'):
-    print "Installing Package Control"
-    os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
 
 
   # Set the default packages
