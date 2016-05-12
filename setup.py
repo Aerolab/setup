@@ -119,6 +119,8 @@ if not os.path.isfile(os.path.expanduser("~") + '/Library/Application Support/Su
   print "Adding Package Control to Sublime Text"
   os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
 
+os.system('ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime')
+
 
 # Appropriate Software
 if options['developer'] == 'y':
