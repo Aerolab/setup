@@ -10,7 +10,8 @@ print "Welcome... TO THE WORLD OF TOMORROW"
 name = ''
 email = ''
 options = { 'developer': '', 'android': '', 'ios': '', 'designer': '',
-            'zsh': '', 'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
+            'sublime': '', 'zsh': '',
+            'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
 
 
 # Sudo: Spectacle, ZSH, OSX Settings
@@ -36,6 +37,8 @@ if options['developer'] == 'y':
 
 while options['designer'] not in ['y', 'n']:
   options['designer'] = raw_input("Do you want to install Designer Tools? (%s)  " % '|'.join(['y','n']))
+
+
 
 while options['zsh'] not in ['y', 'n']:
   options['zsh'] = raw_input("Do you want to install Oh My Zsh? (%s)  " % '|'.join(['y','n']))
@@ -117,10 +120,6 @@ print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
 os.system('brew cask install google-chrome firefox sourcetree sublime-text3 atom dropbox skype spotify slack google-hangouts vlc macdown')
 
-if not os.path.isfile(os.path.expanduser("~") + '/Library/Application Support/Sublime Text 3/Installed Packages/Package Control.sublime-package'):
-  print "Adding Package Control to Sublime Text"
-  os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
-
 
 # Appropriate Software
 if options['developer'] == 'y':
@@ -136,11 +135,123 @@ if options['android'] == 'y':
 if options['ios'] == 'y':
   print "Installing iOS Tools"
   os.system('sudo gem install cocoapods')
-  
+
 if options['designer'] == 'y':
   print "Installing Designer Tools"
   os.system('brew cask install invisionsync iconjar skala-preview')
   #os.system('brew cask install sketch-tool principle framer-studio origami')
+
+
+# Sublime Text 3 with Recommended Packages
+if options['sublime'] == 'y':
+  print "Customizing Sublime Text"
+
+  settings_path = os.path.expanduser("~") + '/Library/Application Support/Sublime Text 3/'
+  user_path = settings_path + 'Packages/User/'
+
+  if not os.path.exists(os.path.dirname(settings_path)):
+    os.makedirs(os.path.dirname(settings_path))
+
+  if not os.path.exists(os.path.dirname(user_path)):
+    os.makedirs(os.path.dirname(user_path))
+
+
+  # Install Package Control
+  if not os.path.isfile( settings_path + 'Installed Packages/Package Control.sublime-package'):
+    print "Installing Package Control"
+    os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
+
+
+  # Set the default packages
+  if not os.path.isfile( user_path + 'Package Control.sublime-settings'):
+    with open( user_path + 'Package Control.sublime-settings', 'w+') as f:
+      print "Installing Default Packages"
+
+      best_packages = {
+        "installed_packages": [
+          "BracketHighlighter",
+          "Color Highlighter",
+          "ColorPicker",
+
+          "Emmet",
+          "JavaScript Completions",
+          "JavaScriptNext - ES6 Syntax",
+
+          "MarkdownEditing",
+          "Material Theme",
+          "Sass",
+          "SassBeautify",
+
+          "Package Control",
+          "SideBarEnhancements",
+          "SublimeCodeIntel",
+          "FileDiffs",
+          "Git",
+          "GitGutter",
+
+          "SublimeLinter",
+          "SublimeLinter-annotations",
+          "SublimeLinter-contrib-sass-lint",
+          "SublimeLinter-html-tidy",
+          "SublimeLinter-jshint",
+          "SublimeLinter-pep8",
+
+          "Web Inspector"
+        ]
+      }
+
+      prefs_plain = f.read()
+      prefs = {}
+
+      if prefs_plain != '':
+        prefs = json.loads(prefs_plain)
+
+      for key, value in best_packages.iteritems():
+        if key not in prefs:
+          prefs[key] = value
+
+      f.write(json.dumps(prefs, sort_keys=True, indent=4, separators=(',', ': ')))
+
+
+  # Set some default settings
+  if not os.path.isfile( user_path + 'Preferences.sublime-settings'):
+    with open( user_path + 'Preferences.sublime-settings', 'w+') as f:
+
+      print "Configuring Default Settings"
+
+      best_prefs = {
+        "always_show_minimap_viewport": False,
+        "bold_folder_labels": True,
+        #"theme": "Material-Theme.sublime-theme",
+        #"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+        "font_options": [
+          "gray_antialias",
+          "subpixel_antialias"
+        ],
+        "font_size": 16,
+        "indent_guide_options": [
+          "draw_normal",
+          "draw_active"
+        ],
+        "line_padding_bottom": 1,
+        "line_padding_top": 1,
+        "overlay_scroll_bars": "enabled",
+        "tab_size": 2,
+        "translate_tabs_to_spaces": True,
+        "trim_trailing_white_space_on_save": True,
+      }
+
+      prefs_plain = f.read()
+      prefs = {}
+
+      if prefs_plain != '':
+        prefs = json.loads(prefs_plain)
+
+      for key, value in best_prefs.iteritems():
+        if key not in prefs:
+          prefs[key] = value
+
+      f.write(json.dumps(prefs, sort_keys=True, indent=4, separators=(',', ': ')))
 
 
 # Oh-My-ZSH. Dracula Theme for iTerm2 needs to be installed manually
@@ -232,7 +343,7 @@ with open(os.path.expanduser("~") + '/.ssh/id_rsa.pub', 'r') as f:
   print f.read()
 print ""
 
-if options['zsh']:
+if options['zsh'] == 'y':
   print "*************************************"
   print "Remember to set up iTerm2:"
   print "* Go to iTerm2 > Preferences > Profiles > Colors Tab"
@@ -242,6 +353,14 @@ if options['zsh']:
   print "* Go to iTerm2 > Preferences > Profiles > Text Tab"
   print "  * Regular Font"
   print "  * 12pt Menlo for Powerline Font"
+  print ""
+
+if options['sublime'] == 'y':
+
+  print "*************************************"
+  print "Please launch Sublime Text to finish setup"
+  print "Material Theme needs to be enabled manually"
+  print "On User Preferences, add: \"theme\": \"Material-Theme.sublime-theme\""
   print ""
 
 print "*************************************"
