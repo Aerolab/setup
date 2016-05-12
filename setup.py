@@ -59,7 +59,7 @@ print "*************************************"
 
 # Create a Private Key
 if os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub'):
-  print "You already have a Private Key"
+  pass
 else:
   print "Creating your Private Key"
   os.system('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "%s"' % email)
