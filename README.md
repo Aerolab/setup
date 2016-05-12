@@ -1,6 +1,16 @@
 # Aerolab Setup
 
-This will install the most popular tools and tweaks we use at Aerolab, including:
+This will install the most popular tools and tweaks we use at Aerolab
+
+Open Terminal, type this and press enter:
+
+```shell
+/usr/bin/python -c "$(curl -fsSL https://raw.githubusercontent.com/Aerolab/setup/master/setup.py)"
+```
+
+Follow the instructions and that's it :D
+
+### Software:
 
 * Brew & Brew Cask
 * Node.js, Ruby, Python, Bower, Gulp, Grunt and Git
@@ -17,14 +27,3 @@ This will install the most popular tools and tweaks we use at Aerolab, including
 * *Designer Tools*: Invision Sync, Scala Preview
 * *Oh My Zsh*: Zsh, but better. Also includes an iTerm2 Theme and Powerline Fonts.
 * *Animations*: Makes all the Finder animations (Spaces, Exposé, Resizing) much faster.
-
-
-## Installation:
-
-Open Terminal, type this and press enter:
-
-```shell
-/usr/bin/python -c "$(curl -fsSL https://raw.githubusercontent.com/Aerolab/setup/master/setup.py)"
-```
-
-Follow the instructions and that's it :D
