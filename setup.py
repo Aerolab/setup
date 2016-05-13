@@ -141,7 +141,10 @@ if options['designer'] == 'y':
 
 
 # Sublime Text 3 Package Control & Binding
-if not os.path.isfile( settings_path + 'Installed Packages/Package Control.sublime-package'):
+sublime_settings_path = os.path.expanduser("~") + '/Library/Application Support/Sublime Text 3/'
+sublime_user_path = sublime_settings_path + 'Packages/User/'
+
+if not os.path.isfile( sublime_settings_path + 'Installed Packages/Package Control.sublime-package'):
   print "Installing Package Control"
   os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
 
@@ -152,19 +155,16 @@ os.system('ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl
 if options['sublime'] == 'y':
   print "Customizing Sublime Text"
 
-  settings_path = os.path.expanduser("~") + '/Library/Application Support/Sublime Text 3/'
-  user_path = settings_path + 'Packages/User/'
+  if not os.path.exists(os.path.dirname(sublime_settings_path)):
+    os.makedirs(os.path.dirname(sublime_settings_path))
 
-  if not os.path.exists(os.path.dirname(settings_path)):
-    os.makedirs(os.path.dirname(settings_path))
-
-  if not os.path.exists(os.path.dirname(user_path)):
-    os.makedirs(os.path.dirname(user_path))
+  if not os.path.exists(os.path.dirname(sublime_user_path)):
+    os.makedirs(os.path.dirname(sublime_user_path))
 
 
   # Set the default packages
-  if not os.path.isfile( user_path + 'Package Control.sublime-settings'):
-    with open( user_path + 'Package Control.sublime-settings', 'w+') as f:
+  if not os.path.isfile( sublime_user_path + 'Package Control.sublime-settings'):
+    with open( sublime_user_path + 'Package Control.sublime-settings', 'w+') as f:
       print "Installing Default Packages"
 
       best_packages = {
@@ -214,8 +214,8 @@ if options['sublime'] == 'y':
 
 
   # Set some default settings
-  if not os.path.isfile( user_path + 'Preferences.sublime-settings'):
-    with open( user_path + 'Preferences.sublime-settings', 'w+') as f:
+  if not os.path.isfile( sublime_user_path + 'Preferences.sublime-settings'):
+    with open( sublime_user_path + 'Preferences.sublime-settings', 'w+') as f:
 
       print "Configuring Default Settings"
 
