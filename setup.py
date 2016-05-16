@@ -40,6 +40,9 @@ while options['designer'] not in ['y', 'n']:
 
 
 
+while options['sublime'] not in ['y', 'n']:
+  options['sublime'] = raw_input("Do you want to install Sublime Text 3 with Plugins? (%s)  " % '|'.join(['y','n']))
+
 while options['zsh'] not in ['y', 'n']:
   options['zsh'] = raw_input("Do you want to install Oh My Zsh? (%s)  " % '|'.join(['y','n']))
 
