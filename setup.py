@@ -10,7 +10,7 @@ print "Welcome... TO THE WORLD OF TOMORROW"
 name = ''
 email = ''
 options = { 'developer': '', 'android': '', 'ios': '', 'designer': '',
-            'sublime': '', 'zsh': '',
+            'sublime': '', 'vim': '', 'zsh': '',
             'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
 
 
@@ -42,6 +42,10 @@ while options['designer'] not in ['y', 'n']:
 
 while options['sublime'] not in ['y', 'n']:
   options['sublime'] = raw_input("Do you want to install Sublime Text 3 with Plugins? (%s)  " % '|'.join(['y','n']))
+
+while options['vim'] not in ['y', 'n']:
+  options['vim'] = raw_input("Do you want to install VIM with Awesome VIM? (%s)  " % '|'.join(['y','n']))
+
 
 while options['zsh'] not in ['y', 'n']:
   options['zsh'] = raw_input("Do you want to install Oh My Zsh? (%s)  " % '|'.join(['y','n']))
@@ -139,7 +143,7 @@ if options['ios'] == 'y':
 
 if options['designer'] == 'y':
   print "Installing Designer Tools"
-  os.system('brew cask install invisionsync iconjar skala-preview')
+  os.system('brew cask install invisionsync iconjar skala-preview lingo')
   #os.system('brew cask install sketch-tool principle framer-studio origami')
 
 
@@ -255,6 +259,14 @@ if options['sublime'] == 'y':
           prefs[key] = value
 
       f.write(json.dumps(prefs, sort_keys=True, indent=4, separators=(',', ': ')))
+
+
+if options['vim'] == 'y':
+  print "Installing VIM + Awesome VIM"
+
+  os.system('brew install vim --override-system-vi')
+  os.system('git clone https://github.com/amix/vimrc.git ~/.vim_runtime')
+  os.system('sh ~/.vim_runtime/install_awesome_vimrc.sh')
 
 
 # Oh-My-ZSH. Dracula Theme for iTerm2 needs to be installed manually
