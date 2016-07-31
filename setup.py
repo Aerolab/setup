@@ -123,13 +123,13 @@ os.system('brew cask install font-dosis font-droid-sans font-open-sans font-open
 
 print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
-os.system('brew cask install google-chrome firefox sourcetree sublime-text3 atom dropbox skype spotify slack google-hangouts vlc macdown')
+os.system('brew cask install google-chrome firefox sourcetree sublime-text atom dropbox skype spotify slack google-hangouts vlc macdown')
 
 
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew cask install sequel-pro cyberduck dockertoolbox ngrok')
+  os.system('brew cask install sequel-pro cyberduck docker ngrok')
 
 if options['android'] == 'y':
   print "Installing Android Tools"
