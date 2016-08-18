@@ -165,7 +165,7 @@ if options['sublime'] == 'y':
   if not os.path.exists(os.path.dirname(sublime_settings_path)):
     os.makedirs(os.path.dirname(sublime_settings_path))
 
-  if not os.path.exists(os.path.dirname(sublime_user_path)):
+  if not os.path.exists(os.path.dirname(sublime_user_path)):dra
     os.makedirs(os.path.dirname(sublime_user_path))
 
 
@@ -291,7 +291,7 @@ if options['zsh'] == 'y':
 
   os.system('chsh -s /bin/zsh &> /dev/null')
 
-  os.system('git clone https://github.com/zenorocha/dracula-theme/ ~/Desktop/dracula-theme/')
+  os.system('git clone https://github.com/dracula/iterm.git ~/Desktop/dracula-theme/')
 
 
 # Random OSX Settings
