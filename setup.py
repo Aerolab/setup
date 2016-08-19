@@ -166,7 +166,7 @@ if options['sublime'] == 'y':
   if not os.path.exists(os.path.dirname(sublime_settings_path)):
     os.makedirs(os.path.dirname(sublime_settings_path))
 
-  if not os.path.exists(os.path.dirname(sublime_user_path)):dra
+  if not os.path.exists(os.path.dirname(sublime_user_path)):
     os.makedirs(os.path.dirname(sublime_user_path))
 
 
