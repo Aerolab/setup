@@ -92,6 +92,7 @@ if os.system('xcode-select -p') != 0:
 
 # Install Brew & Brew Cask
 print "Installing Brew & Brew Cask"
+os.system('touch ~/.bash_profile')
 os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
 os.system('brew tap caskroom/cask')
 os.system('brew tap homebrew/services')
@@ -111,8 +112,8 @@ print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
 
 print "Installing Command Line Tools"
-os.system('npm install -g yo bower gulp-cli grunt-cli node-gyp nvm')
-
+os.system('npm install -g yo bower gulp-cli grunt-cli node-gyp')
+os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
