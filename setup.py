@@ -130,7 +130,7 @@ os.system('brew cask install google-chrome firefox sourcetree sublime-text atom 
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew cask install sequel-pro cyberduck docker ngrok')
+  os.system('brew cask install docker kitematic ngrok sequel-pro cyberduck')
 
 if options['android'] == 'y':
   print "Installing Android Tools"
