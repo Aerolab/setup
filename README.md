@@ -12,9 +12,9 @@ Follow the instructions and that's it :D
 
 ### Software:
 
-* Brew & Brew Cask
+* Brew & Brew Cask with AutoUpdate
 * Node.js, Ruby, Python, Bower, Gulp, Grunt and Git
-* Sublime Text 3 & Package Control
+* Atom, Sublime Text 3 & Package Control and VIM
 * A bunch of Fonts, including our beloved Dosis
 * Essential Quicklook plugins (so you can view code, zip contents and other things)
 * Essential Software, including Chrome, iTerm2, Dropbox, Slack, Sublime, and a few more.
@@ -25,6 +25,7 @@ Follow the instructions and that's it :D
 * *Developer Tools*: Docker Toolbox, Sequel Pro, Cyberduck, ngrok
 * *Android Tools*: Java, Android Studio
 * *iOS Tools*: Cocoapods
+* *Web Developer Tools*: Imageoptim
 * *Designer Tools*: Invision Sync, Scala Preview
 * *Sublime Text 3*: Emmet, Markdown, SASS, Linters, Git, Material Theme and other packages.
 * *Oh My Zsh*: Zsh, but better. Also includes an iTerm2 Theme and Powerline Fonts.
