@@ -22,7 +22,7 @@ if os.system('xcode-select -p') != 0:
   exit()
 
 
-# Sudo: Spectacle, ZSH, OSX Settings
+# Sudo: Spectacle, ZSH, OSX Settingsql
 print "\n\n\nWelcome... TO THE WORLD OF TOMORROW\n\n"
 
 # Basic Info
@@ -118,10 +118,14 @@ os.system('brew install nvm')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
-os.system('brew cask install qlcolorcode qlmarkdown qlimagesize quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch betterzipql font-hack')
+os.system('brew cask install qlcolorcode qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch betterzipql font-hack')
+
+os.system('osascript -e \'display notification "We need your password" with title "Mac Setup"\'')
+os.system('brew cask install qlimagesize')
+
 
 print "Installing Fonts"
-os.system('brew cask install font-dosis font-droid-sans font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-condensed font-roboto-slab font-arial font-arial-black font-consolas-for-powerline font-dejavu-sans font-dejavu-sans-mono-for-powerline font-georgia font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-lg-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-verdana font-times-new-roman font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-fontawesome font-source-code-pro font-anka-coder')
+os.system('brew cask install font-dosis font-droid-sans font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-condensed font-roboto-slab font-arial-black font-consolas-for-powerline font-dejavu-sans font-dejavu-sans-mono-for-powerline font-georgia font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-lg-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-verdana font-times-new-roman font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-fontawesome font-source-code-pro font-anka-coder')
 
 print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
@@ -326,6 +330,7 @@ os.system('defaults write com.apple.dock mru-spaces -bool false')
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 os.system('defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true')
 # Mute startup sound
+os.system('osascript -e \'display notification "Almost There! We need your password again" with title "Mac Setup"\'')
 os.system('sudo nvram SystemAudioVolume=", "')
 
 
