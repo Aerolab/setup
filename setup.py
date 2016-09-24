@@ -351,6 +351,9 @@ if options['autoupdate'] == 'y':
 # Make Google Chrome the default browser
 os.system('open -a "Google Chrome" --args --make-default-browser')
 
+# Open Spectacle (Needs to be enabled manually)
+os.system('open -a "Spectacle"')
+
 
 # Clean Up
 os.system('brew cleanup && brew cask cleanup')
