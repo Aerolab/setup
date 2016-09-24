@@ -307,6 +307,7 @@ if options['zsh'] == 'y':
     os.system('echo "source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc')
     os.system('echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc')
     os.system('echo "alias dog=\'colorize\'" >> ~/.zshrc')
+    os.system('echo "DEFAULT_USER=`whoami`" >> ~/.zshrc')
 
   os.system('git clone https://github.com/dracula/iterm.git ~/Desktop/dracula-theme/')
   
