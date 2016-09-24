@@ -25,6 +25,7 @@ if os.system('xcode-select -p') != 0:
 
 
 # Sudo: Spectacle, ZSH, OSX Settings
+os.system("\n\n\n")
 
 # Basic Info
 while name == '':
