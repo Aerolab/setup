@@ -331,7 +331,7 @@ os.system('defaults write com.apple.dock mru-spaces -bool false')
 os.system('defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true')
 # Mute startup sound
 os.system('osascript -e \'display notification "Almost There! We need your password again" with title "Mac Setup"\' > /dev/null')
-os.system('sudo nvram SystemAudioVolume=", "')
+os.system('sudo nvram SystemAudioVolume=%80')
 
 
 if options['animations'] == 'y':
