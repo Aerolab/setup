@@ -88,7 +88,7 @@ if not os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub'):
 # Set computer name (as done via System Preferences → Sharing)
 os.system('sudo scutil --set ComputerName "%s"' % name)
 os.system('sudo scutil --set HostName "%s"' % name)
-os.system('sudo scutil --set LocalHostName "%s"' % name.replace(' ', '')) # Doesn't support spaces
+os.system('sudo scutil --set LocalHostName "%s"' % name.replace(' ', '-')) # Doesn't support spaces
 os.system('sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "%s"' % name)
 
 
