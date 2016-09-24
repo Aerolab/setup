@@ -120,16 +120,16 @@ os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/ins
 print "Installing Quicklook Helpers"
 os.system('brew cask install qlcolorcode qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch betterzipql font-hack')
 
-os.system('osascript -e \'display notification "We need your password" with title "Mac Setup"\'')
-os.system('brew cask install qlimagesize')
-
 
 print "Installing Fonts"
 os.system('brew cask install font-dosis font-droid-sans font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-condensed font-roboto-slab font-arial-black font-consolas-for-powerline font-dejavu-sans font-dejavu-sans-mono-for-powerline font-georgia font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-lg-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-verdana font-times-new-roman font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-fontawesome font-source-code-pro font-anka-coder')
 
 print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
-os.system('brew cask install google-chrome firefox sourcetree sublime-text atom dropbox skype spotify slack google-hangouts vlc macdown')
+os.system('brew cask install google-chrome firefox sourcetree sublime-text atom dropbox skype spotify slack vlc macdown')
+
+os.system('osascript -e \'display notification "We need your password" with title "Mac Setup"\'')
+os.system('brew cask install google-hangouts qlimagesize')
 
 
 # Appropriate Software
