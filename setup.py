@@ -14,6 +14,16 @@ options = { 'developer': '', 'android': '', 'ios': '', 'designer': '', 'web' : '
             'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
 
 
+# Check if Xcode Command Line Tools are installed
+if os.system('xcode-select -p') != 0:
+  print "Installing XCode Tools"
+  os.system('xcode-select --install')
+  print "**************************************************************"
+  print "Install the XCode Command Line Tools and run this script again"
+  print "**************************************************************"
+  exit()
+
+
 # Sudo: Spectacle, ZSH, OSX Settings
 
 # Basic Info
@@ -42,13 +52,12 @@ while options['designer'] not in ['y', 'n']:
   options['designer'] = raw_input("Do you want to install Designer Tools? (%s)  " % '|'.join(['y','n']))
 
 
-
+# Other Options
 while options['sublime'] not in ['y', 'n']:
   options['sublime'] = raw_input("Do you want to install Sublime Text 3 with Plugins? (%s)  " % '|'.join(['y','n']))
 
 while options['vim'] not in ['y', 'n']:
   options['vim'] = raw_input("Do you want to install VIM with Awesome VIM? (%s)  " % '|'.join(['y','n']))
-
 
 while options['zsh'] not in ['y', 'n']:
   options['zsh'] = raw_input("Do you want to install Oh My Zsh? (%s)  " % '|'.join(['y','n']))
@@ -68,16 +77,6 @@ print "You'll be asked for your password at a few points in the process"
 print "*************************************"
 print "Setting up your Mac..."
 print "*************************************"
-
-
-# Check if Xcode Command Line Tools are installed
-if os.system('xcode-select -p') != 0:
-  print "Installing XCode Tools"
-  os.system('xcode-select --install')
-  print "**************************************************************"
-  print "Install the XCode Command Line Tools and run this script again"
-  print "**************************************************************"
-  exit()
 
 
 # Create a Private Key
