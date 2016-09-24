@@ -22,7 +22,7 @@ if os.system('xcode-select -p') != 0:
   exit()
 
 
-# Sudo: Spectacle, ZSH, OSX Settingsql
+# Sudo: Spectacle, ZSH, OSX Settings
 print "\n\nWelcome... TO THE WORLD OF TOMORROW\n"
 
 # Basic Info
@@ -178,7 +178,7 @@ os.system('ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl
 
 # Sublime Text 3 with Recommended Packages
 if options['sublime'] == 'y':
-  print "Customizing Sublime Text"
+  print "Customizing Sublime Text"zs
 
   if not os.path.exists(os.path.dirname(sublime_settings_path)):
     os.makedirs(os.path.dirname(sublime_settings_path))
@@ -307,7 +307,11 @@ if options['zsh'] == 'y':
     os.system('echo "source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc')
     os.system('echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc')
     os.system('echo "alias dog=\'colorize\'" >> ~/.zshrc')
+    # Don't show the user in the prompt
     os.system('echo "DEFAULT_USER=`whoami`" >> ~/.zshrc')
+
+  # Remove the 'last login' message
+  os.system('touch ~/.hushlogin')
 
   os.system('git clone https://github.com/dracula/iterm.git ~/Desktop/dracula-theme/')
   
