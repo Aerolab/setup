@@ -290,6 +290,7 @@ if options['vim'] == 'y':
 # Oh-My-ZSH. Dracula Theme for iTerm2 needs to be installed manually
 if options['zsh'] == 'y':
   print "Installing Oh-My-Zsh with Dracula Theme"
+  show_notification("We need your password")
   os.system('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
   os.system('brew install zsh-syntax-highlighting zsh-autosuggestions')
   os.system('pip install pygments')
@@ -307,9 +308,10 @@ if options['zsh'] == 'y':
     os.system('echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc')
     os.system('echo "alias dog=\'colorize\'" >> ~/.zshrc')
 
-  os.system('chsh -s /bin/zsh &> /dev/null')
-
   os.system('git clone https://github.com/dracula/iterm.git ~/Desktop/dracula-theme/')
+  
+  show_notification("We need your password")
+  os.system('chsh -s /bin/zsh &> /dev/null')
 
 
 # Random OSX Settings
