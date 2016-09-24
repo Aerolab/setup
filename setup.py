@@ -23,7 +23,7 @@ if os.system('xcode-select -p') != 0:
 
 
 # Sudo: Spectacle, ZSH, OSX Settingsql
-print "\n\n\nWelcome... TO THE WORLD OF TOMORROW\n\n"
+print "\n\nWelcome... TO THE WORLD OF TOMORROW\n"
 
 # Basic Info
 while name == '':
