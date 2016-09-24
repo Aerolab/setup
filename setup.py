@@ -83,7 +83,7 @@ print "*************************************"
 
 
 # Create a Private Key
-if not os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub'):
+if not os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub') :
   print "Creating your Private Key"
   os.system('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "%s"' % email)
 
@@ -295,7 +295,7 @@ if options['zsh'] == 'y':
   os.system('brew install zsh-syntax-highlighting zsh-autosuggestions')
   os.system('pip install pygments')
 
-  if not os.path.isfile(os.path.expanduser("~") + '/.zshrc'):
+  if (not os.path.isfile(os.path.expanduser("~") + '/.zshrc')) or (os.system('cmp --silent ~/.zshrc ~/.oh-my-zsh/templates/zshrc.zsh-template') == 0):
     os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc &> /dev/null')
 
     # Agnoster Theme
