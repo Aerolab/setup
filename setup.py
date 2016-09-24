@@ -128,7 +128,7 @@ print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
 os.system('brew cask install google-chrome firefox sourcetree sublime-text atom dropbox skype spotify slack vlc macdown')
 
-os.system('osascript -e \'display notification "We need your password" with title "Mac Setup"\'')
+os.system('osascript -e \'display notification "We need your password" with title "Mac Setup"\' > /dev/null')
 os.system('brew cask install google-hangouts qlimagesize')
 
 
@@ -330,7 +330,7 @@ os.system('defaults write com.apple.dock mru-spaces -bool false')
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 os.system('defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true')
 # Mute startup sound
-os.system('osascript -e \'display notification "Almost There! We need your password again" with title "Mac Setup"\'')
+os.system('osascript -e \'display notification "Almost There! We need your password again" with title "Mac Setup"\' > /dev/null')
 os.system('sudo nvram SystemAudioVolume=", "')
 
 
