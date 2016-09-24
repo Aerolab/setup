@@ -118,7 +118,6 @@ os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
 
 print "Installing Command Line Tools"
 os.system('npm install -g yo bower gulp-cli grunt-cli node-gyp')
-os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
@@ -312,6 +311,10 @@ if options['zsh'] == 'y':
   
   show_notification("We need your password")
   os.system('chsh -s /bin/zsh &> /dev/null')
+
+
+# Enable NVM (After custom shell). You can also use zsh-nvm.
+os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash')
 
 
 # Random OSX Settings
