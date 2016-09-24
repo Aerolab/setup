@@ -139,6 +139,7 @@ if options['developer'] == 'y':
 
 if options['android'] == 'y':
   print "Installing Android Tools"
+  os.system('osascript -e \'display notification "We need your password" with title "Mac Setup"\' > /dev/null')
   os.system('brew cask install java')
   os.system('brew cask install android-studio')
   os.system('brew install android-platform-tools')
