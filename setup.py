@@ -70,6 +70,16 @@ print "Setting up your Mac..."
 print "*************************************"
 
 
+# Check if Xcode Command Line Tools are installed
+if os.system('xcode-select -p') != 0:
+  print "Installing XCode Tools"
+  os.system('xcode-select --install')
+  print "**************************************************************"
+  print "Install the XCode Command Line Tools and run this script again"
+  print "**************************************************************"
+  exit()
+
+
 # Create a Private Key
 if not os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub'):
   print "Creating your Private Key"
@@ -79,18 +89,8 @@ if not os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub'):
 # Set computer name (as done via System Preferences → Sharing)
 os.system('sudo scutil --set ComputerName "%s"' % name)
 os.system('sudo scutil --set HostName "%s"' % name)
-os.system('sudo scutil --set LocalHostName "%s"' % name)
+os.system('sudo scutil --set LocalHostName "%s"' % name.replace(' ', '')) # Doesn't support spaces
 os.system('sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "%s"' % name)
-
-
-# Check if Xcode Command Line Tools are installed
-if os.system('xcode-select -p') != 0:
-  print "Installing XCode Tools"
-  os.system('xcode-select --install')
-  print "*************************************"
-  print "Restart your Mac to continue"
-  print "*************************************"
-  exit()
 
 
 # Install Brew & Brew Cask
