@@ -366,6 +366,9 @@ os.system('open -a "Google Chrome" --args --make-default-browser')
 # Open Spectacle (Needs to be enabled manually)
 os.system('open -a "Spectacle"')
 
+# Open Dropbox
+os.system('open -a "Dropbox"')
+
 
 # Clean Up
 os.system('brew cleanup && brew cask cleanup')
