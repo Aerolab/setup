@@ -71,6 +71,10 @@ while options['autoupdate'] not in ['y', 'n']:
   options['autoupdate'] = raw_input("Do you want to update your computer automatically? (Recommended) (%s)  " % '|'.join(['y','n']))
 
 
+def show_notification(text):
+  os.system('osascript -e \'display notification "'+ text +'" with title "Mac Setup"\' > /dev/null')
+
+
 print "Hi %s!" % name
 print "You'll be asked for your password at a few points in the process"
 print "*************************************"
@@ -128,7 +132,8 @@ print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
 os.system('brew cask install google-chrome firefox sourcetree sublime-text atom dropbox skype spotify slack vlc macdown')
 
-os.system('osascript -e \'display notification "We need your password" with title "Mac Setup"\' > /dev/null')
+os.system('brew cask fetch google-hangouts qlimagesize')
+show_notification("We need your password")
 os.system('brew cask install google-hangouts qlimagesize')
 
 
@@ -139,13 +144,15 @@ if options['developer'] == 'y':
 
 if options['android'] == 'y':
   print "Installing Android Tools"
-  os.system('osascript -e \'display notification "We need your password" with title "Mac Setup"\' > /dev/null')
+  os.system('brew cask fetch java')
+  show_notification("We need your password")
   os.system('brew cask install java')
   os.system('brew cask install android-studio')
   os.system('brew install android-platform-tools')
 
 if options['ios'] == 'y':
   print "Installing iOS Tools"
+  show_notification("We need your password")
   os.system('sudo gem install cocoapods')
 
 if options['web'] == 'y':
@@ -330,9 +337,6 @@ os.system('chflags nohidden ~/Library')
 os.system('defaults write com.apple.dock mru-spaces -bool false')
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 os.system('defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true')
-# Mute startup sound
-os.system('osascript -e \'display notification "Almost There! We need your password again" with title "Mac Setup"\' > /dev/null')
-os.system('sudo nvram SystemAudioVolume=%80')
 
 
 if options['animations'] == 'y':
@@ -358,6 +362,11 @@ os.system('open -a "Spectacle"')
 
 # Clean Up
 os.system('brew cleanup && brew cask cleanup')
+
+
+# Mute startup sound
+show_notification("We need your password")
+os.system('sudo nvram SystemAudioVolume=%80')
 
 
 print ""
@@ -397,4 +406,4 @@ print "*************************************"
 print "Remember to restart your Mac"
 print "*************************************"
 
-os.system('osascript -e \'display notification "All done! Enjoy your new macOS!" with title "Mac Setup"\' > /dev/null')
+show_notification("All done! Enjoy your new macOS!")
