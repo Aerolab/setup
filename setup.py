@@ -5,8 +5,6 @@ import os
 import json
 import urllib2
 
-print "Welcome... TO THE WORLD OF TOMORROW"
-
 name = ''
 email = ''
 options = { 'developer': '', 'android': '', 'ios': '', 'designer': '', 'web' : '',
@@ -25,7 +23,7 @@ if os.system('xcode-select -p') != 0:
 
 
 # Sudo: Spectacle, ZSH, OSX Settings
-os.system("\n\n\n")
+print "\n\n\nWelcome... TO THE WORLD OF TOMORROW\n\n"
 
 # Basic Info
 while name == '':
