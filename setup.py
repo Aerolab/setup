@@ -397,4 +397,4 @@ print "*************************************"
 print "Remember to restart your Mac"
 print "*************************************"
 
-
+os.system('osascript -e \'display notification "All done! Enjoy your new macOS!" with title "Mac Setup"\' > /dev/null')
