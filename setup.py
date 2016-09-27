@@ -178,7 +178,7 @@ os.system('ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl
 
 # Sublime Text 3 with Recommended Packages
 if options['sublime'] == 'y':
-  print "Customizing Sublime Text"zs
+  print "Customizing Sublime Text"
 
   if not os.path.exists(os.path.dirname(sublime_settings_path)):
     os.makedirs(os.path.dirname(sublime_settings_path))
