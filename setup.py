@@ -117,7 +117,7 @@ print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
 
 print "Installing Command Line Tools"
-os.system('npm install -g yo bower gulp-cli grunt-cli node-gyp')
+os.system('npm install -g yo bower gulp-cli grunt-cli node-gyp serve')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
