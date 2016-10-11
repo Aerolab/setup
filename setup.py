@@ -4,6 +4,7 @@
 import os
 import json
 import urllib2
+import subprocess
 
 name = ''
 email = ''
@@ -295,8 +296,7 @@ if options['zsh'] == 'y':
   os.system('brew install zsh-syntax-highlighting zsh-autosuggestions')
   os.system('pip install pygments')
 
-  if (not os.path.isfile(os.path.expanduser("~") + '/.zshrc')) or (os.system('cmp --silent ~/.zshrc ~/.oh-my-zsh/templates/zshrc.zsh-template') == 0):
-    os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc &> /dev/null')
+  if (not os.path.isfile(os.path.expanduser("~") + '/.zshrc')) or (subprocess.call(['bash', '-c', 'diff <(tail -n +6 ~/.zshrc) <(tail -n +6  ~/.oh-my-zsh/templates/zshrc.zsh-template) > /dev/null']) == 0):
 
     # Agnoster Theme
     os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
