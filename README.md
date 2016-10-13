@@ -30,3 +30,8 @@ Follow the instructions and that's it :D
 * *Sublime Text 3*: Emmet, Markdown, SASS, Linters, Git, Material Theme and other packages.
 * *Oh My Zsh*: Zsh, but better. Also includes an iTerm2 Theme and Powerline Fonts.
 * *Animations*: Makes all the Finder animations (Spaces, Exposé, Resizing) much faster.
+
+### Mac App Store Tools
+
+* *The Basics*: [Keynote](https://itunes.apple.com/en/app/keynote/id409183694), [Numbers](https://itunes.apple.com/en/app/numbers/id409203825), [Pages](https://itunes.apple.com/en/app/pages/id409201541)
+* *Utilities*: [Sip](https://itunes.apple.com/us/app/sip/id507257563?mt=12).
