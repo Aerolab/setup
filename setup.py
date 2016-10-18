@@ -142,7 +142,7 @@ os.system('brew cask install google-hangouts qlimagesize')
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew cask install docker kitematic ngrok sequel-pro cyberduck')
+  os.system('brew cask install docker kitematic ngrok sequel-pro cyberduck tunnelblick')
 
 if options['android'] == 'y':
   print "Installing Android Tools"
