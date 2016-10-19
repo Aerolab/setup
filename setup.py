@@ -164,7 +164,8 @@ if options['web'] == 'y':
 if options['designer'] == 'y':
   print "Installing Designer Tools"
   os.system('brew cask install invisionsync iconjar skala-preview lingo')
-  #os.system('brew cask install sketch-tool principle framer-studio origami')
+  os.system('brew cask install adapter handbrake')
+  os.system('brew cask install origami')
 
 
 # Sublime Text 3 Package Control & Binding
