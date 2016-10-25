@@ -156,6 +156,8 @@ if options['ios'] == 'y':
   print "Installing iOS Tools"
   show_notification("We need your password")
   os.system('sudo gem install cocoapods')
+  show_notification("We need your password")
+  os.system('sudo gem install fastlane --verbose')
 
 if options['web'] == 'y':
   print "Installing Web Developer Tools"
