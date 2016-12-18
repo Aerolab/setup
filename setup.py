@@ -123,7 +123,7 @@ os.system('brew install yarn')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
-os.system('brew cask install qlcolorcode qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch betterzipql font-hack')
+os.system('brew cask install qlcolorcode qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch betterzipql font-hack qlvideo')
 
 
 print "Installing Fonts"
