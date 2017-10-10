@@ -168,7 +168,7 @@ if options['designer'] == 'y':
   os.system('brew cask install invisionsync iconjar skala-preview')
   os.system('brew cask install adapter handbrake')
   show_notification("We need your password")
-  os.system('brew cask install origami')
+  os.system('brew cask install origami-studio')
 
 
 # Sublime Text 3 Package Control & Binding
