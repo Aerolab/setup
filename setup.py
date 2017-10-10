@@ -113,6 +113,7 @@ print "Installing Git+NodeJS+Python+Ruby"
 os.system('brew install git node python python3 ruby')
 os.system('brew link --overwrite git node python python3 ruby')
 os.system('brew install git-flow git-lfs')
+os.system('git lfs install')
 
 print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
