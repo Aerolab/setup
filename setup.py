@@ -145,7 +145,8 @@ os.system('brew cask install google-hangouts qlimagesize')
 if options['developer'] == 'y':
   print "Installing Developer Tools"
   os.system('brew cask install docker kitematic ngrok sequel-pro cyberduck tunnelblick')
-
+  os.system('brew install nvm')
+            
 if options['android'] == 'y':
   print "Installing Android Tools"
   os.system('brew cask fetch java')
@@ -314,6 +315,8 @@ if options['zsh'] == 'y':
     os.system('echo "alias dog=\'colorize\'" >> ~/.zshrc')
     # Don't show the user in the prompt
     os.system('echo "DEFAULT_USER=`whoami`" >> ~/.zshrc')
+            
+    os.system('echo "export NVM_DIR=\"\$HOME/.nvm\"\n[ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\" # This loads nvm" >> ~/.zshrc')
 
   # Remove the 'last login' message
   os.system('touch ~/.hushlogin')
@@ -322,10 +325,6 @@ if options['zsh'] == 'y':
   
   show_notification("We need your password")
   os.system('chsh -s /bin/zsh &> /dev/null')
-
-
-# Enable NVM (After custom shell). You can also use zsh-nvm.
-os.system('brew install nvm')
 
 
 # Random OSX Settings
