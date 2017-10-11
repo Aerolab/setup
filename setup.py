@@ -35,21 +35,21 @@ while email == '' or '@' not in email:
 
 
 # Setup Options
+while options['designer'] not in ['y', 'n']:
+  options['designer'] = raw_input("Do you want to install Designer Tools? (%s)  " % '|'.join(['y','n']))
+
 while options['developer'] not in ['y', 'n']:
   options['developer'] = raw_input("Do you want to install Developer Tools? (%s)  " % '|'.join(['y','n']))
 
 if options['developer'] == 'y':
+  while options['web'] not in ['y', 'n']:
+    options['web'] = raw_input("Do you want to install Web Developer Tools? (%s)  " % '|'.join(['y','n']))
+
   while options['android'] not in ['y', 'n']:
     options['android'] = raw_input("Do you want to install Android Tools? (%s)  " % '|'.join(['y','n']))
 
   while options['ios'] not in ['y', 'n']:
     options['ios'] = raw_input("Do you want to install iOS Tools? (%s)  " % '|'.join(['y','n']))
-
-  while options['web'] not in ['y', 'n']:
-    options['web'] = raw_input("Do you want to install Web Developer Tools? (%s)  " % '|'.join(['y','n']))
-
-while options['designer'] not in ['y', 'n']:
-  options['designer'] = raw_input("Do you want to install Designer Tools? (%s)  " % '|'.join(['y','n']))
 
 
 # Other Options
