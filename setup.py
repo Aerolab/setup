@@ -325,7 +325,7 @@ if options['zsh'] == 'y':
 
 
 # Enable NVM (After custom shell). You can also use zsh-nvm.
-os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash')
+os.system('brew install nvm')
 
 
 # Random OSX Settings
