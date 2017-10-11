@@ -112,6 +112,7 @@ os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 print "Installing Git+NodeJS+Python+Ruby"
 os.system('brew install git node python python3 ruby')
 os.system('brew link --overwrite git node python python3 ruby')
+os.system('brew unlink python && brew link python') # Fixes an issue with pip
 os.system('brew install git-flow git-lfs')
 os.system('git lfs install')
 
@@ -298,19 +299,18 @@ if options['zsh'] == 'y':
   print "Installing Oh-My-Zsh with Dracula Theme"
   show_notification("We need your password")
   os.system('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
-  os.system('brew install zsh-syntax-highlighting zsh-autosuggestions')
-  os.system('pip install pygments')
+  os.system('git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions')
+  os.system('git clone git://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting')
+  os.system('pip3 install pygments')
 
   if (not os.path.isfile(os.path.expanduser("~") + '/.zshrc')) or (subprocess.call(['bash', '-c', 'diff <(tail -n +6 ~/.zshrc) <(tail -n +6  ~/.oh-my-zsh/templates/zshrc.zsh-template) > /dev/null']) == 0):
 
     # Agnoster Theme
     os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
     # Plugins
-    os.system('sed -i -e \'s/plugins=(git)/plugins=(git git-flow brew sublime python node bower npm gem pip pod docker zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages copydir copyfile extract)/g\' ~/.zshrc &> /dev/null')
+    os.system('sed -i -e \'s/plugins=(git)/plugins=(git brew sublime node npm docker zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages copydir copyfile extract)/g\' ~/.zshrc &> /dev/null')
 
     # Customizations
-    os.system('echo "source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc')
-    os.system('echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc')
     os.system('echo "alias dog=\'colorize\'" >> ~/.zshrc')
     # Don't show the user in the prompt
     os.system('echo "DEFAULT_USER=`whoami`" >> ~/.zshrc')
@@ -385,7 +385,7 @@ os.system('brew cleanup && brew cask cleanup')
 
 # Mute startup sound
 show_notification("We need your password")
-os.system('sudo nvram SystemAudioVolume=%80')
+os.system('sudo nvram SystemAudioVolume=%00')
 
 
 print ""
