@@ -105,7 +105,6 @@ os.system('brew tap caskroom/cask')
 os.system('brew tap homebrew/services')
 os.system('brew tap caskroom/versions')
 os.system('brew tap caskroom/fonts')
-os.system('brew tap homebrew/versions')
 os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 
 
@@ -291,7 +290,7 @@ if options['sublime'] == 'y':
 if options['vim'] == 'y':
   print "Installing VIM + Awesome VIM"
 
-  os.system('brew install vim --override-system-vi')
+  os.system('brew install vim --with-override-system-vi')
   os.system('git clone https://github.com/amix/vimrc.git ~/.vim_runtime')
   os.system('sh ~/.vim_runtime/install_awesome_vimrc.sh')
 
