@@ -145,7 +145,7 @@ os.system('brew cask install google-hangouts qlimagesize')
 if options['developer'] == 'y':
   print "Installing Developer Tools"
   os.system('brew cask install docker ngrok sequel-pro cyberduck tunnelblick')
-  os.system('brew install nvm')
+  os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash')
             
 if options['android'] == 'y':
   print "Installing Android Tools"
@@ -314,7 +314,7 @@ if options['zsh'] == 'y':
     # Customizations
     os.system('echo "alias dog=\'colorize\'" >> ~/.zshrc')
     # Don't show the user in the prompt
-    os.system('echo "DEFAULT_USER=`whoami`" >> ~/.zshrc')
+    os.system('echo "DEFAULT_USER=\`whoami\`" >> ~/.zshrc')
             
     os.system('echo "export NVM_DIR=\"\$HOME/.nvm\"\n[ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\" # This loads nvm" >> ~/.zshrc')
 
