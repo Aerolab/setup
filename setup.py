@@ -89,12 +89,13 @@ if not os.path.isfile(os.path.expanduser("~") + '/.ssh/id_rsa.pub') :
   os.system('ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N "" -C "%s"' % email)
 
 
-# Set computer name (as done via System Preferences → Sharing)
+# Set computer name & git info (as done via System Preferences → Sharing)
 os.system('sudo scutil --set ComputerName "%s"' % name)
 os.system('sudo scutil --set HostName "%s"' % name)
 os.system('sudo scutil --set LocalHostName "%s"' % name.replace(' ', '-')) # Doesn't support spaces
 os.system('sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "%s"' % name)
-
+os.system('git config --global user.name "%s"' % name)
+os.system('git config --global user.email "%s"' % email)
 
 # Install Brew & Brew Cask
 print "Installing Brew & Brew Cask"
