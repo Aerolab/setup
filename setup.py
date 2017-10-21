@@ -299,12 +299,26 @@ if options['vim'] == 'y':
 if options['zsh'] == 'y':
   print "Installing Oh-My-Zsh with Dracula Theme"
   show_notification("We need your password")
-  os.system('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
+
+  # Setup Adapted from https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+  if os.system('test -n "$ZSH"') != 0:
+     os.system('export ZSH=~/.oh-my-zsh')
+
+  if os.system('test -n "$ZSH_CUSTOM"') != 0:
+     os.system('export ZSH_CUSTOM=~/.oh-my-zsh/custom')
+
+  if os.system('test -d "$ZSH"') != 0:
+    os.system('umask g-w,o-w && git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH')
+
+  if os.system('test -f ~/.zshrc') != 0:
+    os.system('cp $ZSH/templates/zshrc.zsh-template ~/.zshrc')
+
   os.system('git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions')
   os.system('git clone git://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting')
   os.system('pip3 install pygments')
 
-  if (not os.path.isfile(os.path.expanduser("~") + '/.zshrc')) or (subprocess.call(['bash', '-c', 'diff <(tail -n +6 ~/.zshrc) <(tail -n +6  ~/.oh-my-zsh/templates/zshrc.zsh-template) > /dev/null']) == 0):
+  # If the user has the default .zshrc tune it a bit
+  if (subprocess.call(['bash', '-c', 'diff <(tail -n +6 ~/.zshrc) <(tail -n +6  ~/.oh-my-zsh/templates/zshrc.zsh-template) > /dev/null']) == 0):
 
     # Agnoster Theme
     os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
@@ -322,9 +336,6 @@ if options['zsh'] == 'y':
   os.system('touch ~/.hushlogin')
 
   os.system('git clone https://github.com/dracula/iterm.git ~/Desktop/dracula-theme/')
-  
-  show_notification("We need your password")
-  os.system('chsh -s /bin/zsh &> /dev/null')
 
 
 # Random OSX Settings
@@ -425,3 +436,8 @@ print "Remember to restart your Mac"
 print "*************************************"
 
 show_notification("All done! Enjoy your new macOS!")
+
+  
+# Change the shell if necessary
+if options['zsh'] == 'y':
+  os.system('chsh -s /bin/zsh &> /dev/null')
