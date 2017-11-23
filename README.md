@@ -35,4 +35,3 @@ Follow the instructions and that's it :D
 
 * You can install mas by typing **brew install mas**, which lets you install App Store apps via the command line.
 * *The Basics*: [Keynote](https://itunes.apple.com/en/app/keynote/id409183694), [Numbers](https://itunes.apple.com/en/app/numbers/id409203825), [Pages](https://itunes.apple.com/en/app/pages/id409201541)
-* *Utilities*: [Sip](https://itunes.apple.com/us/app/sip/id507257563?mt=12).
