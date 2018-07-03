@@ -112,7 +112,7 @@ os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 print "Installing Git+NodeJS+Python+Ruby"
 os.system('brew install git node python python3 ruby')
 os.system('brew link --overwrite git node python python3 ruby')
-os.system('brew unlink python && brew link python') # Fixes an issue with pip
+os.system('brew unlink python && brew link --overwrite python') # Fixes an issue with pip
 os.system('brew install git-flow git-lfs')
 os.system('git lfs install')
 
@@ -125,7 +125,7 @@ os.system('brew install yarn')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
-os.system('brew cask install qlcolorcode qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch betterzipql font-hack qlvideo')
+os.system('brew cask install qlcolorcode qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch font-hack qlvideo')
 
 
 print "Installing Fonts"
