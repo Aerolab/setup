@@ -118,10 +118,10 @@ os.system('git lfs install')
 
 print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
+os.system('brew install bat')
 
 print "Installing Command Line Tools"
-os.system('npm install -g yo bower gulp-cli grunt-cli node-gyp serve')
-os.system('brew install yarn')
+os.system('npm install -g yo gulp-cli node-gyp serve')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
@@ -315,7 +315,6 @@ if options['zsh'] == 'y':
 
   os.system('git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions')
   os.system('git clone git://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting')
-  os.system('pip3 install pygments')
 
   # If the user has the default .zshrc tune it a bit
   if (subprocess.call(['bash', '-c', 'diff <(tail -n +6 ~/.zshrc) <(tail -n +6  ~/.oh-my-zsh/templates/zshrc.zsh-template) > /dev/null']) == 0):
@@ -323,10 +322,10 @@ if options['zsh'] == 'y':
     # Agnoster Theme
     os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
     # Plugins
-    os.system('sed -i -e \'s/plugins=(git)/plugins=(git brew sublime node npm docker zsh-autosuggestions zsh-syntax-highlighting colorize colored-man-pages copydir copyfile extract)/g\' ~/.zshrc &> /dev/null')
+    os.system('sed -i -e \'s/plugins=(git)/plugins=(git brew sublime node npm docker zsh-autosuggestions zsh-syntax-highlighting colored-man-pages copydir copyfile extract)/g\' ~/.zshrc &> /dev/null')
 
     # Customizations
-    os.system('echo "alias dog=\'colorize\'" >> ~/.zshrc')
+    os.system('echo "alias dog=\'bat\'" >> ~/.zshrc')
     # Don't show the user in the prompt
     os.system('echo "DEFAULT_USER=\`whoami\`" >> ~/.zshrc')
             
