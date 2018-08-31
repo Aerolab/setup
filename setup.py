@@ -118,7 +118,7 @@ os.system('git lfs install')
 
 print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
-os.system('brew install bat')
+os.system('brew install bat tldr')
 
 print "Installing Command Line Tools"
 os.system('npm install -g yo gulp-cli node-gyp serve')
@@ -126,7 +126,6 @@ os.system('npm install -g yo gulp-cli node-gyp serve')
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
 os.system('brew cask install qlcolorcode qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch font-hack qlvideo')
-
 
 print "Installing Fonts"
 os.system('brew cask install font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-condensed font-roboto-slab font-consolas-for-powerline font-dejavu-sans font-dejavu-sans-mono-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro')
