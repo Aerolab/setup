@@ -121,7 +121,7 @@ os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
 os.system('brew install bat tldr')
 
 print "Installing Command Line Tools"
-os.system('npm install -g yo gulp-cli node-gyp serve')
+os.system('npm install -g yo gulp-cli node-gyp serve ndb')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
