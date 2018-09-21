@@ -53,9 +53,6 @@ if options['developer'] == 'y':
 
 
 # Other Options
-while options['sublime'] not in ['y', 'n']:
-  options['sublime'] = raw_input("Do you want to install Sublime Text 3 with Plugins? (%s)  " % '|'.join(['y','n']))
-
 while options['vim'] not in ['y', 'n']:
   options['vim'] = raw_input("Do you want to install VIM with Awesome VIM? (%s)  " % '|'.join(['y','n']))
 
@@ -171,128 +168,12 @@ if options['designer'] == 'y':
   os.system('brew cask install adapter handbrake')
   os.system('brew cask install origami-studio')
 
-
-# Sublime Text 3 Package Control & Binding
-sublime_settings_path = os.path.expanduser("~") + '/Library/Application Support/Sublime Text 3/'
-sublime_user_path = sublime_settings_path + 'Packages/User/'
-
-if not os.path.isfile( sublime_settings_path + 'Installed Packages/Package Control.sublime-package'):
-  print "Installing Package Control"
-  os.system('wget -P ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package')
-
-os.system('ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime')
-
-
-# Sublime Text 3 with Recommended Packages
-if options['sublime'] == 'y':
-  print "Customizing Sublime Text"
-
-  if not os.path.exists(os.path.dirname(sublime_settings_path)):
-    os.makedirs(os.path.dirname(sublime_settings_path))
-
-  if not os.path.exists(os.path.dirname(sublime_user_path)):
-    os.makedirs(os.path.dirname(sublime_user_path))
-
-
-  # Set the default packages
-  if not os.path.isfile( sublime_user_path + 'Package Control.sublime-settings'):
-    with open( sublime_user_path + 'Package Control.sublime-settings', 'w+') as f:
-      print "Installing Default Packages"
-
-      best_packages = {
-        "installed_packages": [
-          "BracketHighlighter",
-          "Color Highlighter",
-          "ColorPicker",
-
-          "Emmet",
-          "JavaScript Completions",
-          "JavaScriptNext - ES6 Syntax",
-
-          "MarkdownEditing",
-          "Material Theme",
-          "Sass",
-          "SassBeautify",
-
-          "Package Control",
-          "SideBarEnhancements",
-          "SublimeCodeIntel",
-          "FileDiffs",
-          "Git",
-          "GitGutter",
-
-          "SublimeLinter",
-          "SublimeLinter-annotations",
-          "SublimeLinter-contrib-sass-lint",
-          "SublimeLinter-html-tidy",
-          "SublimeLinter-jshint",
-          "SublimeLinter-pep8",
-
-          "Web Inspector"
-        ]
-      }
-
-      prefs_plain = f.read()
-      prefs = {}
-
-      if prefs_plain != '':
-        prefs = json.loads(prefs_plain)
-
-      for key, value in best_packages.iteritems():
-        if key not in prefs:
-          prefs[key] = value
-
-      f.write(json.dumps(prefs, sort_keys=True, indent=4, separators=(',', ': ')))
-
-
-  # Set some default settings
-  if not os.path.isfile( sublime_user_path + 'Preferences.sublime-settings'):
-    with open( sublime_user_path + 'Preferences.sublime-settings', 'w+') as f:
-
-      print "Configuring Default Settings"
-
-      best_prefs = {
-        "always_show_minimap_viewport": False,
-        "bold_folder_labels": True,
-        #"theme": "Material-Theme.sublime-theme",
-        #"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
-        "font_options": [
-          "gray_antialias",
-          "subpixel_antialias"
-        ],
-        "font_size": 16,
-        "indent_guide_options": [
-          "draw_normal",
-          "draw_active"
-        ],
-        "line_padding_bottom": 1,
-        "line_padding_top": 1,
-        "overlay_scroll_bars": "enabled",
-        "tab_size": 2,
-        "translate_tabs_to_spaces": True,
-        "trim_trailing_white_space_on_save": True,
-      }
-
-      prefs_plain = f.read()
-      prefs = {}
-
-      if prefs_plain != '':
-        prefs = json.loads(prefs_plain)
-
-      for key, value in best_prefs.iteritems():
-        if key not in prefs:
-          prefs[key] = value
-
-      f.write(json.dumps(prefs, sort_keys=True, indent=4, separators=(',', ': ')))
-
-
 if options['vim'] == 'y':
   print "Installing VIM + Awesome VIM"
 
   os.system('brew install vim --with-override-system-vi')
   os.system('git clone https://github.com/amix/vimrc.git ~/.vim_runtime')
   os.system('sh ~/.vim_runtime/install_awesome_vimrc.sh')
-
 
 # Oh-My-ZSH. Dracula Theme for iTerm2 needs to be installed manually
 if options['zsh'] == 'y':
