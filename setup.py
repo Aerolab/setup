@@ -115,7 +115,7 @@ os.system('git lfs install')
 
 print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
-os.system('brew install bat tldr')
+os.system('brew install bat tldr tree')
 
 print "Installing Command Line Tools"
 os.system('npm install -g yo gulp-cli node-gyp serve ndb')
