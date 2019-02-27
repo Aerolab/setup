@@ -160,7 +160,7 @@ if options['ios'] == 'y':
 
 if options['web'] == 'y':
   print "Installing Web Developer Tools"
-  os.system('brew cask install imageoptim imagealpha')
+  os.system('brew cask install imageoptim imagealpha xnconvert')
   
 if options['designer'] == 'y':
   print "Installing Designer Tools"
