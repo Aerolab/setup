@@ -248,8 +248,10 @@ if options['animations'] == 'y':
   print "Tweaking System Animations"
   os.system('defaults write NSGlobalDomain NSWindowResizeTime -float 0.1')
   os.system('defaults write com.apple.dock expose-animation-duration -float 0.15')
-  os.system('defaults write com.apple.dock autohide-time-modifier -float 0.2')
+  os.system('defaults write com.apple.dock autohide-delay -float 0')
+  os.system('defaults write com.apple.dock autohide-time-modifier -float 0.3')
   os.system('defaults write NSGlobalDomain com.apple.springing.delay -float 0.5')
+  os.system('killall Dock')
 
 
 if options['autoupdate'] == 'y':
