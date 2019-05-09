@@ -164,7 +164,7 @@ if options['web'] == 'y':
   
 if options['designer'] == 'y':
   print "Installing Designer Tools"
-  os.system('brew cask install invisionsync iconjar skala-preview')
+  os.system('brew cask install invisionsync skala-preview')
   os.system('brew cask install adapter handbrake')
   os.system('brew cask install origami-studio')
 
