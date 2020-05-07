@@ -99,7 +99,7 @@ print "Installing Brew & Brew Cask"
 os.system('touch ~/.bash_profile')
 os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
 os.system('brew tap homebrew/cask-versions')
-os.system('brew tap homewbre/cask-fonts')
+os.system('brew tap homebrew/cask-fonts')
 os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 
 
