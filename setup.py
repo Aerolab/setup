@@ -182,20 +182,14 @@ if options['zsh'] == 'y':
   show_notification("We need your password")
 
   # Setup Adapted from https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-  if os.system('test -n "$ZSH"') != 0:
-     os.system('export ZSH=~/.oh-my-zsh')
-
-  if os.system('test -n "$ZSH_CUSTOM"') != 0:
-     os.system('export ZSH_CUSTOM=~/.oh-my-zsh/custom')
-
-  if os.system('test -d "$ZSH"') != 0:
-    os.system('umask g-w,o-w && git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH')
+  if os.system('test -d ~/.oh-my-zsh') != 0:
+    os.system('umask g-w,o-w && git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh')
 
   if os.system('test -f ~/.zshrc') != 0:
     os.system('cp $ZSH/templates/zshrc.zsh-template ~/.zshrc')
 
-  os.system('git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions')
-  os.system('git clone git://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting')
+  os.system('git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions')
+  os.system('git clone git://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting')
 
   # If the user has the default .zshrc tune it a bit
   if (subprocess.call(['bash', '-c', 'diff <(tail -n +6 ~/.zshrc) <(tail -n +6  ~/.oh-my-zsh/templates/zshrc.zsh-template) > /dev/null']) == 0):
