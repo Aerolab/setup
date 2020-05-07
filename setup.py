@@ -172,7 +172,7 @@ if options['designer'] == 'y':
 if options['vim'] == 'y':
   print "Installing VIM + Awesome VIM"
 
-  os.system('brew install vim --with-override-system-vi')
+  os.system('brew install vim')
   os.system('git clone https://github.com/amix/vimrc.git ~/.vim_runtime')
   os.system('sh ~/.vim_runtime/install_awesome_vimrc.sh')
 
@@ -272,7 +272,7 @@ os.system('open -a "Dropbox"')
 
 
 # Clean Up
-os.system('brew cleanup && brew cask cleanup')
+os.system('brew cleanup')
 
 
 # Mute startup sound
