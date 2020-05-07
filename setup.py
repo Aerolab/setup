@@ -150,7 +150,7 @@ if options['android'] == 'y':
   show_notification("We need your password")
   os.system('brew cask install java')
   os.system('brew cask install android-studio')
-  os.system('brew install android-platform-tools')
+  os.system('brew cask install android-platform-tools')
 
 if options['ios'] == 'y':
   print "Installing iOS Tools"
