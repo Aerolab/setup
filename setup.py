@@ -98,10 +98,8 @@ os.system('git config --global user.email "%s"' % email)
 print "Installing Brew & Brew Cask"
 os.system('touch ~/.bash_profile')
 os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
-os.system('brew tap caskroom/cask')
-os.system('brew tap homebrew/services')
-os.system('brew tap caskroom/versions')
-os.system('brew tap caskroom/fonts')
+os.system('brew tap homebrew/cask-versions')
+os.system('brew tap homewbre/cask-fonts')
 os.system('brew update && brew upgrade && brew cleanup && brew cask cleanup')
 
 
@@ -122,10 +120,10 @@ os.system('npm install -g yo gulp-cli node-gyp serve ndb')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
-os.system('brew cask install qlcolorcode qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlstephen qlprettypatch font-hack qlvideo')
+os.system('brew cask install qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package quicklookase qlvideo qlimagesize epubquicklook qlprettypatch qlvideo')
 
 print "Installing Fonts"
-os.system('brew cask install font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-condensed font-roboto-slab font-consolas-for-powerline font-dejavu-sans font-dejavu-sans-mono-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro')
+os.system('brew cask install font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-condensed font-roboto-slab font-consolas-for-powerline font-dejavu-sans font-dejavu-sans-mono-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro font-hack')
 # font-anka-coder isn't working
 
 print "Installing Essential Apps"
