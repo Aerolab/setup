@@ -131,7 +131,7 @@ os.system('brew cask install font-dosis font-droid-sans-mono-for-powerline font-
 
 print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
-os.system('brew cask install google-chrome firefox sourcetree sublime-text visual-studio-code atom dropbox skype spotify slack vlc typora')
+os.system('brew cask install google-chrome firefox sourcetree visual-studio-code dropbox skype spotify slack vlc')
 
 os.system('brew cask fetch google-hangouts qlimagesize')
 show_notification("We need your password")
