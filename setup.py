@@ -106,7 +106,7 @@ os.system('brew update && brew upgrade && brew cleanup')
 
 # Install Languages
 print "Installing Git+NodeJS+Python+Ruby"
-os.system('brew install git node python python3 ruby')
+os.system('brew install git node python python3 ruby yarn')
 os.system('brew link --overwrite git node python python3 ruby')
 os.system('brew unlink python && brew link --overwrite python') # Fixes an issue with pip
 os.system('brew install git-flow git-lfs')
