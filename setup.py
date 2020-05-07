@@ -22,6 +22,7 @@ if os.system('xcode-select -p') != 0:
   print "**************************************************************"
   exit()
 
+os.system('sudo xcodebuild -license accept')
 
 # Sudo: Spectacle, ZSH, OSX Settings
 print "\n\nWelcome... TO THE WORLD OF TOMORROW\n"
