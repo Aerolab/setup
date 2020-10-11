@@ -142,7 +142,7 @@ os.system('brew cask install google-hangouts qlimagesize')
 if options['developer'] == 'y':
   print "Installing Developer Tools"
   os.system('brew cask install docker ngrok sequel-pro cyberduck tunnelblick insomnia')
-  os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash')
+  os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash')
             
 if options['android'] == 'y':
   print "Installing Android Tools"
