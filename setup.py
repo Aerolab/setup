@@ -134,9 +134,9 @@ print "Installing Essential Apps"
 os.system('brew cask install iterm2 spectacle the-unarchiver')
 os.system('brew cask install google-chrome firefox sourcetree visual-studio-code dropbox skype spotify slack vlc')
 
-os.system('brew cask fetch google-hangouts qlimagesize')
+os.system('brew cask fetch qlimagesize')
 show_notification("We need your password")
-os.system('brew cask install google-hangouts qlimagesize')
+os.system('brew cask install qlimagesize')
 
 
 # Appropriate Software
