@@ -139,7 +139,7 @@ os.system('brew install --cask google-chrome firefox sourcetree visual-studio-co
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew install --cask docker ngrok sequel-pro cyberduck tunnelblick insomnia')
+  os.system('brew install --cask docker ngrok sequel-pro cyberduck postman')
   os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash')
             
 if options['android'] == 'y':
