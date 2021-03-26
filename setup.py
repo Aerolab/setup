@@ -122,7 +122,7 @@ os.system('npm install -g yo gulp-cli node-gyp serve ndb')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
-os.system('brew install --cask qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package quicklookase qlvideo qlimagesize epubquicklook qlprettypatch qlvideo')
+os.system('brew install --cask qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package quicklookase qlvideo epubquicklook qlprettypatch qlvideo')
 # Permissions Fix for macOS Catalina
 os.system('xattr -d -r com.apple.quarantine ~/Library/QuickLook')
 
@@ -134,10 +134,6 @@ os.system('brew install --cask font-dosis font-droid-sans-mono-for-powerline fon
 print "Installing Essential Apps"
 os.system('brew install --cask iterm2 spectacle the-unarchiver')
 os.system('brew install --cask google-chrome firefox sourcetree visual-studio-code dropbox skype spotify slack vlc')
-
-os.system('brew --cask fetch qlimagesize')
-show_notification("We need your password")
-os.system('brew install --cask qlimagesize')
 
 
 # Appropriate Software
