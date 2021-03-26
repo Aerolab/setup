@@ -121,37 +121,37 @@ os.system('npm install -g yo gulp-cli node-gyp serve ndb')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
-os.system('brew cask install qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package quicklookase qlvideo qlimagesize epubquicklook qlprettypatch qlvideo')
+os.system('brew --cask install qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package quicklookase qlvideo qlimagesize epubquicklook qlprettypatch qlvideo')
 # Permissions Fix for macOS Catalina
 os.system('xattr -d -r com.apple.quarantine ~/Library/QuickLook')
 
 print "Installing Fonts"
 # For some reason most fonts require SVN
 os.system('brew install svn')
-os.system('brew cask install font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-slab font-consolas-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro font-hack font-anka-coder font-jetbrains-mono')
+os.system('brew --cask install font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-slab font-consolas-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro font-hack font-anka-coder font-jetbrains-mono')
 
 print "Installing Essential Apps"
-os.system('brew cask install iterm2 spectacle the-unarchiver')
-os.system('brew cask install google-chrome firefox sourcetree visual-studio-code dropbox skype spotify slack vlc')
+os.system('brew --cask install iterm2 spectacle the-unarchiver')
+os.system('brew --cask install google-chrome firefox sourcetree visual-studio-code dropbox skype spotify slack vlc')
 
-os.system('brew cask fetch qlimagesize')
+os.system('brew --cask fetch qlimagesize')
 show_notification("We need your password")
-os.system('brew cask install qlimagesize')
+os.system('brew --cask install qlimagesize')
 
 
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew cask install docker ngrok sequel-pro cyberduck tunnelblick insomnia')
+  os.system('brew --cask install docker ngrok sequel-pro cyberduck tunnelblick insomnia')
   os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash')
             
 if options['android'] == 'y':
   print "Installing Android Tools"
-  os.system('brew cask fetch java')
+  os.system('brew --cask fetch java')
   show_notification("We need your password")
-  os.system('brew cask install java')
-  os.system('brew cask install android-studio')
-  os.system('brew cask install android-platform-tools')
+  os.system('brew --cask install java')
+  os.system('brew --cask install android-studio')
+  os.system('brew --cask install android-platform-tools')
 
 if options['ios'] == 'y':
   print "Installing iOS Tools"
@@ -162,13 +162,13 @@ if options['ios'] == 'y':
 
 if options['web'] == 'y':
   print "Installing Web Developer Tools"
-  os.system('brew cask install imageoptim imagealpha xnconvert')
+  os.system('brew --cask install imageoptim imagealpha xnconvert')
   
 if options['designer'] == 'y':
   print "Installing Designer Tools"
-  os.system('brew cask install invisionsync skala-preview')
-  os.system('brew cask install adapter handbrake')
-  os.system('brew cask install origami-studio')
+  os.system('brew --cask install invisionsync skala-preview')
+  os.system('brew --cask install adapter handbrake')
+  os.system('brew --cask install origami-studio')
 
 if options['vim'] == 'y':
   print "Installing VIM + Awesome VIM"
