@@ -22,7 +22,8 @@ if os.system('xcode-select -p') != 0:
   print "**************************************************************"
   exit()
 
-os.system('sudo xcodebuild -license accept')
+# Accept XCode License
+# os.system('sudo xcodebuild -license accept')
 
 # Sudo: Spectacle, ZSH, OSX Settings
 print "\n\nWelcome... TO THE WORLD OF TOMORROW\n"
@@ -98,7 +99,7 @@ os.system('git config --global user.email "%s"' % email)
 # Install Brew & Brew Cask
 print "Installing Brew & Brew Cask"
 os.system('touch ~/.bash_profile')
-os.system('/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
+os.system('/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
 os.system('brew tap homebrew/cask-versions')
 os.system('brew tap homebrew/cask-fonts')
 os.system('brew update && brew upgrade && brew cleanup')
@@ -147,7 +148,7 @@ if options['developer'] == 'y':
             
 if options['android'] == 'y':
   print "Installing Android Tools"
-  os.system('brew --cask fetch java')
+  os.system('brew fetch --cask java')
   show_notification("We need your password")
   os.system('brew install --cask java')
   os.system('brew install --cask android-studio')
