@@ -122,7 +122,7 @@ os.system('npm install -g yo gulp-cli node-gyp serve ndb')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
-os.system('brew install --cask qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package epubquicklook qlprettypatch')
+os.system('brew install --cask qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package qlprettypatch')
 # Permissions Fix for macOS Catalina
 os.system('xattr -d -r com.apple.quarantine ~/Library/QuickLook')
 
