@@ -106,10 +106,9 @@ os.system('brew update && brew upgrade && brew cleanup')
 
 
 # Install Languages
-print "Installing Git+NodeJS+Python+Ruby"
-os.system('brew install git node python python3 ruby yarn')
-os.system('brew link --overwrite git node python python3 ruby')
-os.system('brew unlink python && brew link --overwrite python') # Fixes an issue with pip
+print "Installing Git+NodeJS"
+os.system('brew install git node yarn')
+os.system('brew link --overwrite git node')
 os.system('brew install git-flow git-lfs')
 os.system('git lfs install')
 
@@ -118,7 +117,7 @@ os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
 os.system('brew install bat tldr tree')
 
 print "Installing Command Line Tools"
-os.system('npm install -g yo gulp-cli node-gyp serve ndb')
+os.system('npm install -g node-gyp serve')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
@@ -132,9 +131,7 @@ os.system('brew install svn')
 os.system('brew install --cask font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-slab font-consolas-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro font-hack font-anka-coder font-jetbrains-mono')
 
 print "Installing Essential Apps"
-os.system('brew install --cask iterm2 spectacle the-unarchiver')
-os.system('brew install --cask google-chrome firefox sourcetree visual-studio-code dropbox skype spotify slack vlc')
-
+os.system('brew install --cask iterm2 the-unarchiver google-chrome visual-studio-code dropbox spotify slack discord')
 
 # Appropriate Software
 if options['developer'] == 'y':
@@ -186,17 +183,18 @@ if options['zsh'] == 'y':
   if os.system('test -f ~/.zshrc') != 0:
     os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc')
 
-  os.system('git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions')
-  os.system('git clone git://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting')
-
   # If the user has the default .zshrc tune it a bit
   if (subprocess.call(['bash', '-c', 'diff <(tail -n +6 ~/.zshrc) <(tail -n +6  ~/.oh-my-zsh/templates/zshrc.zsh-template) > /dev/null']) == 0):
+
+    os.system('brew install zsh-autosuggestions zsh-syntax-highlighting')
 
     # Agnoster Theme
     os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
     # Plugins
     os.system('sed -i -e \'s/plugins=(git)/plugins=(git brew sublime node npm docker zsh-autosuggestions zsh-syntax-highlighting colored-man-pages copydir copyfile extract)/g\' ~/.zshrc &> /dev/null')
-
+    os.system('echo "source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc');
+    os.system('echo "source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc');
+            
     # Customizations
     os.system('echo "alias dog=\'bat\'" >> ~/.zshrc')
     # Don't show the user in the prompt
