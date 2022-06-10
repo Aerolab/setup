@@ -8,7 +8,7 @@ import subprocess
 
 name = ''
 email = ''
-options = { 'developer': '', 'android': '', 'ios': '', 'designer': '', 'web' : '',
+options = { 'developer': '', 'android': '', 'ios': '', 'designer': '',
             'sublime': '', 'vim': '', 'zsh': '',
             'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
 
@@ -44,9 +44,6 @@ while options['developer'] not in ['y', 'n']:
   options['developer'] = raw_input("Do you want to install Developer Tools? (%s)  " % '|'.join(['y','n']))
 
 if options['developer'] == 'y':
-  while options['web'] not in ['y', 'n']:
-    options['web'] = raw_input("Do you want to install Web Developer Tools? (%s)  " % '|'.join(['y','n']))
-
   while options['android'] not in ['y', 'n']:
     options['android'] = raw_input("Do you want to install Android Tools? (%s)  " % '|'.join(['y','n']))
 
@@ -133,7 +130,7 @@ os.system('brew install font-dosis font-droid-sans-mono-for-powerline font-open-
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew install docker ngrok sequel-pro postman')
+  os.system('brew install docker ngrok sequel-pro postman imageoptim imagealpha xnconvert')
   os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash')
             
 if options['android'] == 'y':
@@ -150,10 +147,6 @@ if options['ios'] == 'y':
   os.system('sudo gem install cocoapods')
   show_notification("We need your password")
   os.system('sudo gem install fastlane --verbose')
-
-if options['web'] == 'y':
-  print "Installing Web Developer Tools"
-  os.system('brew install imageoptim imagealpha xnconvert')
   
 if options['designer'] == 'y':
   print "Installing Designer Tools"
