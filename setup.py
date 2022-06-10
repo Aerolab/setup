@@ -177,7 +177,7 @@ if options['zsh'] == 'y':
     os.system('brew install zsh-autosuggestions zsh-syntax-highlighting bat tldr tree')
     os.system('echo "source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc');
     os.system('echo "source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc');
-    os.system('sed -i -e \'s/plugins=(git)/plugins=(git brew node npm docker zsh-autosuggestions zsh-syntax-highlighting colored-man-pages copypath copyfile extract)/g\' ~/.zshrc &> /dev/null')
+    os.system('sed -i -e \'s/plugins=(git)/plugins=(git brew node npm docker colored-man-pages copypath copyfile extract)/g\' ~/.zshrc &> /dev/null')
 
     # Agnoster Theme
     os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
