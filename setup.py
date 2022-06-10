@@ -166,7 +166,7 @@ if options['zsh'] == 'y':
 
   # Setup Adapted from https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
   if os.system('test -d ~/.oh-my-zsh') != 0:
-    os.system('sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
+    os.system('umask g-w,o-w && git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh')
   if os.system('test -f ~/.zshrc') != 0:
     os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc')
 
