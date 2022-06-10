@@ -122,7 +122,7 @@ os.system('brew install qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook
 os.system('xattr -d -r com.apple.quarantine ~/Library/QuickLook')
 
 print "Installing Essential Apps"
-os.system('brew install iterm2 the-unarchiver spectacle google-chrome visual-studio-code spotify slack discord')
+os.system('brew install iterm2 the-unarchiver rectangle google-chrome visual-studio-code spotify slack discord')
 
 print "Installing Fonts"
 os.system('brew install font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-slab font-consolas-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro font-hack font-anka-coder font-jetbrains-mono')
@@ -241,12 +241,8 @@ if options['autoupdate'] == 'y':
 # Make Google Chrome the default browser
 os.system('open -a "Google Chrome" --args --make-default-browser')
 
-# Open Spectacle (Needs to be enabled manually)
-os.system('open -a "Spectacle"')
-
-# Open Dropbox
-os.system('open -a "Dropbox"')
-
+# Open Rectangle (Needs to be enabled manually)
+os.system('open -a "Rectangle"')
 
 # Clean Up
 os.system('brew cleanup')
