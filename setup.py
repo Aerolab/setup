@@ -107,45 +107,42 @@ os.system('brew update && brew upgrade && brew cleanup')
 
 # Install Languages
 print "Installing Git+NodeJS"
-os.system('brew install git node yarn')
+os.system('brew install git node')
 os.system('brew link --overwrite git node')
-os.system('brew install git-flow git-lfs')
+os.system('brew install git-flow git-lfs svn') # For some reason most fonts require SVN
 os.system('git lfs install')
 
 print "Installing Useful Stuff"
 os.system('brew install graphicsmagick curl wget sqlite libpng libxml2 openssl')
-os.system('brew install bat tldr tree')
 
 print "Installing Command Line Tools"
-os.system('npm install -g node-gyp serve')
+os.system('npm install -g node-gyp serve yarn')
 
 # OSX Tweaks & Essentials
 print "Installing Quicklook Helpers"
-os.system('brew install --cask qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json webpquicklook suspicious-package qlprettypatch')
+os.system('brew install qlcolorcode qlstephen qlmarkdown quicklook-csv quicklook-json qlimagesize webpquicklook suspicious-package qlprettypatch quicklookase qlvideo')
 # Permissions Fix for macOS Catalina
 os.system('xattr -d -r com.apple.quarantine ~/Library/QuickLook')
 
-print "Installing Fonts"
-# For some reason most fonts require SVN
-os.system('brew install svn')
-os.system('brew install --cask font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-slab font-consolas-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro font-hack font-anka-coder font-jetbrains-mono')
-
 print "Installing Essential Apps"
-os.system('brew install --cask iterm2 the-unarchiver google-chrome visual-studio-code dropbox spotify slack discord')
+os.system('brew install iterm2 the-unarchiver spectacle google-chrome visual-studio-code spotify slack discord')
+
+print "Installing Fonts"
+os.system('brew install font-dosis font-droid-sans-mono-for-powerline font-open-sans font-open-sans-condensed font-roboto font-roboto-mono font-roboto-slab font-consolas-for-powerline font-inconsolata font-inconsolata-for-powerline font-lato font-menlo-for-powerline font-meslo-lg font-meslo-for-powerline font-noto-sans font-noto-serif font-source-sans-pro font-source-serif-pro font-ubuntu font-pt-mono font-pt-sans font-pt-serif font-fira-mono font-fira-mono-for-powerline font-fira-code font-fira-sans font-source-code-pro font-hack font-anka-coder font-jetbrains-mono')
 
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew install --cask docker ngrok sequel-pro cyberduck postman')
+  os.system('brew install docker ngrok sequel-pro postman')
   os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash')
             
 if options['android'] == 'y':
   print "Installing Android Tools"
-  os.system('brew fetch --cask java')
+  os.system('brew fetch java')
   show_notification("We need your password")
-  os.system('brew install --cask java')
-  os.system('brew install --cask android-studio')
-  os.system('brew install --cask android-platform-tools')
+  os.system('brew install java')
+  os.system('brew install android-studio')
+  os.system('brew install android-platform-tools')
 
 if options['ios'] == 'y':
   print "Installing iOS Tools"
@@ -156,13 +153,11 @@ if options['ios'] == 'y':
 
 if options['web'] == 'y':
   print "Installing Web Developer Tools"
-  os.system('brew install --cask imageoptim imagealpha xnconvert')
+  os.system('brew install imageoptim imagealpha xnconvert')
   
 if options['designer'] == 'y':
   print "Installing Designer Tools"
-  os.system('brew install --cask invisionsync skala-preview')
-  os.system('brew install --cask adapter handbrake')
-  os.system('brew install --cask origami-studio')
+  os.system('brew install figma')
 
 if options['vim'] == 'y':
   print "Installing VIM + Awesome VIM"
@@ -178,28 +173,27 @@ if options['zsh'] == 'y':
 
   # Setup Adapted from https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
   if os.system('test -d ~/.oh-my-zsh') != 0:
-    os.system('umask g-w,o-w && git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh')
-
+    os.system('sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
   if os.system('test -f ~/.zshrc') != 0:
     os.system('cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc')
 
   # If the user has the default .zshrc tune it a bit
   if (subprocess.call(['bash', '-c', 'diff <(tail -n +6 ~/.zshrc) <(tail -n +6  ~/.oh-my-zsh/templates/zshrc.zsh-template) > /dev/null']) == 0):
-
-    os.system('brew install zsh-autosuggestions zsh-syntax-highlighting')
+            
+    # Plugins
+    os.system('brew install zsh-autosuggestions zsh-syntax-highlighting bat tldr tree')
+    os.system('echo "source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc');
+    os.system('echo "source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc');
+    os.system('sed -i -e \'s/plugins=(git)/plugins=(git brew node npm docker zsh-autosuggestions zsh-syntax-highlighting colored-man-pages copypath copyfile extract)/g\' ~/.zshrc &> /dev/null')
 
     # Agnoster Theme
     os.system('sed -i -e \'s/robbyrussell/agnoster/g\' ~/.zshrc &> /dev/null')
-    # Plugins
-    os.system('sed -i -e \'s/plugins=(git)/plugins=(git brew sublime node npm docker zsh-autosuggestions zsh-syntax-highlighting colored-man-pages copydir copyfile extract)/g\' ~/.zshrc &> /dev/null')
-    os.system('echo "source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc');
-    os.system('echo "source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc');
-            
+
     # Customizations
     os.system('echo "alias dog=\'bat\'" >> ~/.zshrc')
     # Don't show the user in the prompt
     os.system('echo "DEFAULT_USER=\`whoami\`" >> ~/.zshrc')
-            
+
     os.system('echo "export NVM_DIR=\"\$HOME/.nvm\"\n[ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\" # This loads nvm" >> ~/.zshrc')
 
   # Remove the 'last login' message
@@ -247,8 +241,8 @@ if options['animations'] == 'y':
 
 if options['autoupdate'] == 'y':
   print "Enabling Automatic Brew Updates & Upgrades"
-  os.system('brew tap domt4/autoupdate')
-  os.system('brew autoupdate --start --upgrade')
+  os.system('brew tap homebrew/autoupdate')
+  os.system('brew autoupdate start --upgrade')
 
 
 # Make Google Chrome the default browser
