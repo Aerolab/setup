@@ -33,7 +33,7 @@ while name == '':
   name = raw_input("What's your name?\n").strip()
 
 while email == '' or '@' not in email:
-  email = raw_input("What's your email?\n").strip()
+  email = raw_input("What's your work email?\n").strip()
 
 
 # Setup Options
