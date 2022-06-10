@@ -38,34 +38,34 @@ while email == '' or '@' not in email:
 
 # Setup Options
 while options['designer'] not in ['y', 'n']:
-  options['designer'] = raw_input("Do you want to install Designer Tools? (%s)  " % '|'.join(['y','n']))
+  options['designer'] = raw_input("Do you want to install Designer Tools? (y|n) [y]  ") or "y"
 
 while options['developer'] not in ['y', 'n']:
-  options['developer'] = raw_input("Do you want to install Developer Tools? (%s)  " % '|'.join(['y','n']))
+  options['developer'] = raw_input("Do you want to install Developer Tools? (y|n) [y]  ") or "y"
 
 if options['developer'] == 'y':
   while options['android'] not in ['y', 'n']:
-    options['android'] = raw_input("Do you want to install Android Tools? (%s)  " % '|'.join(['y','n']))
+    options['android'] = raw_input("Do you want to install Android Tools? (y|n) [n]  ") or "n"
 
   while options['ios'] not in ['y', 'n']:
-    options['ios'] = raw_input("Do you want to install iOS Tools? (%s)  " % '|'.join(['y','n']))
+    options['ios'] = raw_input("Do you want to install iOS Tools? (y|n) [n]  ") or "n"
 
 
 # Other Options
 while options['vim'] not in ['y', 'n']:
-  options['vim'] = raw_input("Do you want to install VIM with Awesome VIM? (%s)  " % '|'.join(['y','n']))
+  options['vim'] = raw_input("Do you want to install VIM with Awesome VIM? (y|n) [y]  ") or "y"
 
 while options['zsh'] not in ['y', 'n']:
-  options['zsh'] = raw_input("Do you want to install Oh My Zsh? (%s)  " % '|'.join(['y','n']))
+  options['zsh'] = raw_input("Do you want to install Oh My Zsh? (y|n) [y]  ") or "y"
 
 while options['animations'] not in ['y', 'n']:
-  options['animations'] = raw_input("Do you want to accelerate OSX animations? (%s)  " % '|'.join(['y','n']))
+  options['animations'] = raw_input("Do you want to accelerate OSX animations? (y|n) [y]  ") or "y"
 
 while options['showhiddenfiles'] not in ['y', 'n']:
-  options['showhiddenfiles'] = raw_input("Do you want to show hidden files? (%s)  " % '|'.join(['y','n']))
+  options['showhiddenfiles'] = raw_input("Do you want to show hidden files? (y|n) [y]  ") or "y"
 
 while options['autoupdate'] not in ['y', 'n']:
-  options['autoupdate'] = raw_input("Do you want to update your computer automatically? (Recommended) (%s)  " % '|'.join(['y','n']))
+  options['autoupdate'] = raw_input("Do you want to update your computer automatically? (y|n) [y]  ") or "y"
 
 
 def show_notification(text):
