@@ -130,8 +130,8 @@ os.system('brew install font-dosis font-droid-sans-mono-for-powerline font-open-
 # Appropriate Software
 if options['developer'] == 'y':
   print "Installing Developer Tools"
-  os.system('brew install docker sequel-pro postman imageoptim imagealpha xnconvert')
   os.system('brew install --cask docker')
+  os.system('brew install sequel-pro postman imageoptim imagealpha xnconvert')
   os.system('curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash')
             
 if options['android'] == 'y':
