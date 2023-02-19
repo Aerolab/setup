@@ -17,6 +17,7 @@ options = { 'developer': '', 'android': '', 'ios': '', 'designer': '',
 if os.system('xcode-select -p') != 0:
   print "Installing XCode Tools"
   os.system('xcode-select --install')
+  os.system('softwareupdate --install-rosetta --agree-to-license')
   print "**************************************************************"
   print "Install the XCode Command Line Tools and run this script again"
   print "**************************************************************"
