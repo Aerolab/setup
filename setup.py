@@ -9,7 +9,7 @@ import subprocess
 name = ''
 email = ''
 options = { 'developer': '', 'android': '', 'ios': '', 'designer': '',
-            'sublime': '', 'vim': '', 'zsh': '',
+            'vim': '', 'zsh': '',
             'animations': '', 'showhiddenfiles': '', 'autoupdate': '', }
 
 
@@ -276,14 +276,6 @@ if options['zsh'] == 'y':
   print "* Go to iTerm2 > Preferences > Profiles > Text Tab"
   print "  * Regular Font"
   print "  * 12pt Menlo for Powerline Font"
-  print ""
-
-if options['sublime'] == 'y':
-
-  print "*************************************"
-  print "Please launch Sublime Text to finish setup"
-  print "Material Theme needs to be enabled manually"
-  print "On User Preferences, add: \"theme\": \"Material-Theme.sublime-theme\""
   print ""
 
 print "*************************************"
